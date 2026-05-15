@@ -1328,6 +1328,231 @@
 </head>
 <body>
 
+<!-- ============================================================
+     BOOT LOADER OVERLAY — injected, does not touch original code
+     ============================================================ -->
+<div id="boot-loader">
+  <div id="boot-inner">
+    <div id="boot-header">
+      <span class="boot-cyan">nicholas_abel</span><span class="boot-muted">@portfolio</span><span class="boot-white">:</span><span class="boot-purple">~</span><span class="boot-white">$</span>
+      <span class="boot-cursor"> _</span>
+    </div>
+    <div id="boot-lines"></div>
+    <div id="boot-bar-wrap">
+      <span class="boot-muted">Loading</span>
+      <div id="boot-progress-track"><div id="boot-progress-fill"></div></div>
+      <span id="boot-pct" class="boot-cyan">0%</span>
+    </div>
+    <div id="boot-done" style="display:none;">
+      <span class="boot-green">✓</span> <span class="boot-white">Portfolio initialised successfully.</span>
+      <span class="boot-muted"> — Press any key or wait…</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* ── Boot Loader Styles ── */
+  #boot-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #0a0a0f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Mono', 'Courier New', monospace;
+    font-size: clamp(0.62rem, 1.4vw, 0.82rem);
+    color: #f0f0f5;
+    overflow: hidden;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  #boot-loader.fade-out {
+    opacity: 0;
+    pointer-events: none;
+  }
+  #boot-loader::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,229,255,0.012) 2px,
+      rgba(0,229,255,0.012) 4px
+    );
+    pointer-events: none;
+    animation: boot-scan 8s linear infinite;
+  }
+  @keyframes boot-scan {
+    0%   { background-position: 0 0; }
+    100% { background-position: 0 200px; }
+  }
+  #boot-inner {
+    width: min(760px, 90vw);
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  #boot-header {
+    font-size: 1em;
+    margin-bottom: 0.6rem;
+    letter-spacing: 0.04em;
+  }
+  .boot-cursor {
+    animation: boot-blink 0.7s step-end infinite;
+    color: #00e5ff;
+  }
+  @keyframes boot-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  #boot-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+    min-height: 280px;
+    overflow: hidden;
+  }
+  .boot-line {
+    display: flex;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: boot-appear 0.08s forwards;
+    line-height: 1.55;
+    white-space: pre;
+  }
+  @keyframes boot-appear { to { opacity: 1; } }
+  .boot-line .bl-tag  { color: #00e5ff; min-width: 2em; }
+  .boot-line .bl-ok   { color: #4ade80; }
+  .boot-line .bl-warn { color: #facc15; }
+  .boot-line .bl-err  { color: #f472b6; }
+  .boot-line .bl-dim  { color: #555570; }
+  .boot-line .bl-val  { color: #a78bfa; }
+
+  #boot-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.8rem;
+    font-size: 0.78em;
+    letter-spacing: 0.06em;
+  }
+  #boot-progress-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  #boot-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00e5ff, #7c3aed, #f472b6);
+    border-radius: 2px;
+    transition: width 0.12s linear;
+    box-shadow: 0 0 8px rgba(0,229,255,0.5);
+  }
+  #boot-done {
+    margin-top: 0.8rem;
+    font-size: 0.85em;
+    letter-spacing: 0.04em;
+    animation: boot-appear 0.3s forwards;
+  }
+
+  /* colour helpers */
+  .boot-cyan   { color: #00e5ff; }
+  .boot-purple { color: #a78bfa; }
+  .boot-green  { color: #4ade80; }
+  .boot-muted  { color: #555570; }
+  .boot-white  { color: #f0f0f5; }
+</style>
+
+<script>
+(function() {
+  /* ── Boot sequences ── */
+  const LINES = [
+    { delay:  0,   tag:'[BIOS]',  cls:'bl-tag',  text: 'Initialising hardware abstraction layer…',    end:'bl-ok',  endTxt:'  OK' },
+    { delay:  80,  tag:'[MEM]',   cls:'bl-tag',  text: 'Checking RAM  →  16384 MB detected',          end:'bl-ok',  endTxt:'  PASS' },
+    { delay: 160,  tag:'[DISK]',  cls:'bl-tag',  text: 'Mounting root filesystem  /dev/sda1 ext4',    end:'bl-ok',  endTxt:'  MOUNTED' },
+    { delay: 240,  tag:'[NET]',   cls:'bl-tag',  text: 'Acquiring DHCP lease…  192.168.1.42',         end:'bl-ok',  endTxt:'  UP' },
+    { delay: 330,  tag:'[ENV]',   cls:'bl-tag',  text: 'NODE_ENV=production  PORT=443  TZ=UTC',       end:'bl-dim', endTxt:'  SET' },
+    { delay: 420,  tag:'[PKG]',   cls:'bl-tag',  text: 'Loading Space Mono, Syne, Google Fonts…',    end:'bl-ok',  endTxt:'  CACHED' },
+    { delay: 510,  tag:'[CSS]',   cls:'bl-tag',  text: 'Parsing 1,840 rules  →  0 conflicts found',  end:'bl-ok',  endTxt:'  CLEAN' },
+    { delay: 600,  tag:'[JS]',    cls:'bl-tag',  text: 'Compiling portfolio.bundle.js  (v3.1.4)…',   end:'bl-ok',  endTxt:'  DONE' },
+    { delay: 680,  tag:'[3D]',    cls:'bl-tag',  text: 'WebGL context created  ←  GPU: Iris Xe',     end:'bl-ok',  endTxt:'  READY' },
+    { delay: 760,  tag:'[ANIM]',  cls:'bl-tag',  text: 'Scheduling 24 CSS animations @ 60fps',       end:'bl-ok',  endTxt:'  QUEUED' },
+    { delay: 840,  tag:'[CURSOR]',cls:'bl-tag',  text: 'Custom cursor injected  mode=none',          end:'bl-ok',  endTxt:'  ACTIVE' },
+    { delay: 910,  tag:'[NAV]',   cls:'bl-tag',  text: 'Registering scroll listeners & nav links',   end:'bl-ok',  endTxt:'  DONE' },
+    { delay: 990,  tag:'[SEC]',   cls:'bl-tag',  text: 'CSP headers verified  →  no violations',     end:'bl-ok',  endTxt:'  SECURE' },
+    { delay:1070,  tag:'[GAME]',  cls:'bl-tag',  text: 'Spawning game engines  ×5  (Snake, Pong…)',  end:'bl-ok',  endTxt:'  LOADED' },
+    { delay:1150,  tag:'[SNAKE]', cls:'bl-dim',  text: '  └─ Snake engine  →  grid 30×20  ready',    end:'bl-dim', endTxt:'' },
+    { delay:1200,  tag:'[PONG]',  cls:'bl-dim',  text: '  └─ Pong  →  AI difficulty MEDIUM',         end:'bl-dim', endTxt:'' },
+    { delay:1250,  tag:'[MEM]',   cls:'bl-dim',  text: '  └─ Memory Match  →  8 pairs shuffled',     end:'bl-dim', endTxt:'' },
+    { delay:1310,  tag:'[BUG]',   cls:'bl-dim',  text: '  └─ Catch-the-Bug  →  arena 600×300',       end:'bl-dim', endTxt:'' },
+    { delay:1380,  tag:'[ACHIEV]',cls:'bl-tag',  text: 'Achievement system mounted  →  5 badges',    end:'bl-ok',  endTxt:'  UNLOCKED' },
+    { delay:1460,  tag:'[CONTACT]',cls:'bl-tag', text: 'Contact form endpoint  →  /api/contact',     end:'bl-ok',  endTxt:'  READY' },
+    { delay:1540,  tag:'[PERF]',  cls:'bl-tag',  text: 'LCP: 0.72s  FID: 4ms  CLS: 0.002',          end:'bl-ok',  endTxt:'  PASS' },
+    { delay:1640,  tag:'[THEME]', cls:'bl-tag',  text: 'Dark mode active  →  prefers-color-scheme',  end:'bl-ok',  endTxt:'  SYNCED' },
+    { delay:1720,  tag:'[SYS]',   cls:'bl-tag',  text: 'All systems operational.  Uptime: 0s',       end:'bl-ok',  endTxt:'  GO' },
+  ];
+
+  const container = document.getElementById('boot-lines');
+  const fill      = document.getElementById('boot-progress-fill');
+  const pctEl     = document.getElementById('boot-pct');
+  const doneEl    = document.getElementById('boot-done');
+  const loader    = document.getElementById('boot-loader');
+
+  const TOTAL_DURATION = 1820; // ms when last line fires
+  const HIDE_AFTER     = 900;  // ms after done message before fade-out
+
+  /* Render each line */
+  LINES.forEach((ln, i) => {
+    setTimeout(() => {
+      const row = document.createElement('div');
+      row.className = 'boot-line';
+      row.innerHTML =
+        `<span class="${ln.cls}">${ln.tag}</span>` +
+        `<span class="boot-white">${ln.text}</span>` +
+        (ln.endTxt ? `<span class="${ln.end}">${ln.endTxt}</span>` : '');
+      container.appendChild(row);
+      container.scrollTop = container.scrollHeight;
+
+      /* progress bar */
+      const pct = Math.round(((i + 1) / LINES.length) * 100);
+      fill.style.width = pct + '%';
+      pctEl.textContent = pct + '%';
+    }, ln.delay);
+  });
+
+  /* Show "done" message */
+  setTimeout(() => {
+    doneEl.style.display = 'block';
+  }, TOTAL_DURATION + 100);
+
+  /* Dismiss on keypress or click */
+  function dismiss() {
+    loader.classList.add('fade-out');
+    setTimeout(() => loader.remove(), 650);
+    document.removeEventListener('keydown', dismiss);
+    document.removeEventListener('click',   dismiss);
+  }
+
+  /* Auto-dismiss after done + delay */
+  setTimeout(() => dismiss(), TOTAL_DURATION + HIDE_AFTER);
+
+  /* Allow early skip after 60% loaded */
+  setTimeout(() => {
+    document.addEventListener('keydown', dismiss);
+    document.addEventListener('click',   dismiss);
+  }, TOTAL_DURATION * 0.6);
+})();
+</script>
+<!-- ============================================================
+     END BOOT LOADER
+     ============================================================ -->
+
+
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 <div class="scroll-progress-bar" id="scrollProgressBar"></div>
