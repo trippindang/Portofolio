@@ -31,7 +31,6 @@
     --transition-theme: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
   }
 
-  /* ===== LIGHT MODE VARIABLES ===== */
   [data-theme="light"] {
     --bg: #f5f5fa;
     --bg2: #eeeef7;
@@ -94,7 +93,6 @@
     transition: var(--transition-theme);
   }
 
-  /* Custom cursor */
   .cursor {
     width: 10px; height: 10px;
     background: var(--cyan);
@@ -116,12 +114,10 @@
   }
   .cursor-ring.hovered { width: 56px; height: 56px; opacity: 0.6; }
 
-  /* Scrollbar */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 2px; }
 
-  /* ===== DARK/LIGHT TOGGLE ===== */
   .theme-toggle {
     position: fixed;
     bottom: 2rem;
@@ -155,7 +151,6 @@
   [data-theme="light"] .theme-toggle .icon-moon { opacity: 0; transform: rotate(-90deg) scale(0.5); }
   [data-theme="light"] .theme-toggle .icon-sun  { opacity: 1; transform: rotate(0deg) scale(1); }
 
-  /* ===== TOP SCROLL PROGRESS BAR ===== */
   .scroll-progress-bar {
     position: fixed;
     top: 0;
@@ -168,7 +163,6 @@
     box-shadow: 0 0 10px rgba(0,229,255,0.5);
   }
 
-  /* NAV */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -226,7 +220,6 @@
   }
   .nav-cta:hover { background: rgba(0,229,255,0.08); box-shadow: var(--glow-cyan); }
 
-  /* HERO */
   #hero {
     min-height: 100vh;
     display: flex;
@@ -373,7 +366,6 @@
   }
   .scroll-line { width: 60px; height: 1px; background: linear-gradient(90deg, var(--muted2), transparent); }
 
-  /* SECTION BASE */
   section { padding: 7rem 4rem; }
   .section-tag {
     font-family: var(--font-mono);
@@ -406,7 +398,6 @@
     margin-bottom: 4rem;
   }
 
-  /* Reveal animation */
   .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
   .reveal-delay-1 { transition-delay: 0.1s; }
@@ -416,7 +407,6 @@
 
   @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } from { opacity: 0; transform: translateY(20px); } }
 
-  /* ABOUT */
   #about { background: var(--bg2); }
   .about-grid {
     display: grid;
@@ -424,9 +414,7 @@
     gap: 6rem;
     align-items: center;
   }
-  .about-avatar-wrap {
-    position: relative;
-  }
+  .about-avatar-wrap { position: relative; }
   .about-avatar {
     width: 100%;
     max-width: 340px;
@@ -515,7 +503,6 @@
   }
   .trait-chip:hover { background: rgba(124,58,237,0.15); border-color: var(--purple2); }
 
-  /* ===== SKILLS WITH VISUAL PROGRESS BARS ===== */
   #skills { background: var(--bg); }
   .skills-grid {
     display: grid;
@@ -542,10 +529,7 @@
   }
   .skill-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: var(--glow-purple); }
   .skill-card:hover::before { opacity: 1; }
-  .skill-card-icon {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-  }
+  .skill-card-icon { font-size: 1.8rem; margin-bottom: 1rem; }
   .skill-card-title {
     font-size: 0.8rem;
     font-family: var(--font-mono);
@@ -567,7 +551,6 @@
   }
   .skill-tag:hover { color: var(--text); border-color: var(--border2); }
 
-  /* Skill radial bars */
   .skill-radials {
     display: flex;
     gap: 1rem;
@@ -620,7 +603,6 @@
     pointer-events: none;
   }
 
-  /* EXPERIENCE */
   #experience { background: var(--bg2); }
   .exp-placeholder {
     background: var(--surface);
@@ -633,7 +615,6 @@
   .exp-placeholder h3 { font-size: 1.1rem; color: var(--muted); font-weight: 400; margin-bottom: 0.5rem; }
   .exp-placeholder p { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted2); }
 
-  /* CERTIFICATES */
   #certificates { background: var(--bg); }
   .cert-grid {
     display: grid;
@@ -674,84 +655,344 @@
     gap: 0.5rem;
   }
   .cert-issuer::before { content: ''; width: 16px; height: 1px; background: var(--cyan); }
-  .cert-title {
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
-  }
-  .cert-year {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--muted2);
-  }
-  .cert-upload-notice {
-    font-family: var(--font-mono);
-    font-size: 0.68rem;
-    color: var(--muted2);
+  .cert-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.4; }
+  .cert-year { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted2); }
+
+  /* ===== PROJECTS / ARCADE SECTION ===== */
+  #projects { background: var(--bg2); }
+
+  .arcade-intro {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    overflow: hidden;
     text-align: center;
-    margin-top: 2rem;
-    padding: 1rem;
-    border: 1px dashed var(--border);
-    border-radius: 4px;
+  }
+  .arcade-intro::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(0,229,255,0.04), rgba(124,58,237,0.08), rgba(244,114,182,0.04));
+    pointer-events: none;
+  }
+  .arcade-intro-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--pink);
+    border: 1px solid rgba(244,114,182,0.3);
+    padding: 0.3rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(244,114,182,0.05);
+  }
+  .arcade-intro h3 {
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 800;
+    margin-bottom: 0.6rem;
+    background: linear-gradient(90deg, var(--cyan), var(--purple2), var(--pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .arcade-intro p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
   }
 
-  /* PROJECTS */
-  #projects { background: var(--bg2); }
-  .projects-grid {
+  .game-selector {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
   }
-  .project-card {
+  .game-btn {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-    transition: all 0.3s;
-  }
-  .project-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
-  .project-img {
-    height: 180px;
-    background: linear-gradient(135deg, var(--bg3), var(--surface2));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 3rem;
-    border-bottom: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1rem;
+    cursor: none;
+    text-align: center;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
     overflow: hidden;
   }
-  .project-img::before {
+  .game-btn::before {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(0,229,255,0.05), rgba(124,58,237,0.1));
+    background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(124,58,237,0.1));
+    opacity: 0;
+    transition: opacity 0.3s;
   }
-  .project-body { padding: 1.5rem; }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
-  .project-tag {
+  .game-btn:hover, .game-btn.active {
+    border-color: var(--cyan);
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(0,229,255,0.15);
+  }
+  .game-btn:hover::before, .game-btn.active::before { opacity: 1; }
+  .game-btn.active { border-color: var(--purple2); box-shadow: 0 0 20px rgba(167,139,250,0.2); }
+  .game-btn-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
+  .game-btn-name {
     font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--purple2);
-    border: 1px solid rgba(167,139,250,0.25);
-    padding: 0.2rem 0.6rem;
-    border-radius: 3px;
-    background: rgba(124,58,237,0.07);
+    font-size: 0.68rem;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 0.2rem;
   }
-  .project-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; }
-  .project-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; }
-  .project-links { display: flex; gap: 1rem; }
-  .project-link {
+  .game-btn-desc {
+    font-size: 0.65rem;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    display: block;
+  }
+
+  /* Terminal window frame */
+  .game-window {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+  }
+  .game-window.active { display: block; }
+  .game-titlebar {
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border);
+    padding: 0.7rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .tb-dot { width: 12px; height: 12px; border-radius: 50%; }
+  .tb-red { background: #ff5f57; }
+  .tb-yellow { background: #febc2e; }
+  .tb-green { background: #28c840; }
+  .game-titlebar-name {
     font-family: var(--font-mono);
     font-size: 0.72rem;
-    color: var(--cyan);
-    text-decoration: none;
+    color: var(--muted);
+    margin-left: 0.5rem;
+    flex: 1;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+  .game-body { padding: 1.5rem; }
+
+  /* ===== GAME: TREX ===== */
+  #game-trex canvas {
+    display: block;
+    background: transparent;
+    margin: 0 auto;
+    border-radius: 4px;
+  }
+  .game-score-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+  .game-score-val { color: var(--cyan); font-weight: 700; font-size: 1rem; }
+  .game-msg {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.8rem;
+  }
+  .game-msg span { color: var(--cyan); }
+
+  /* ===== GAME: HACKER TYPING ===== */
+  .hacker-display {
+    background: #000;
+    border: 1px solid rgba(0,229,255,0.2);
+    border-radius: 6px;
+    padding: 1.5rem;
+    font-family: var(--font-mono);
+    min-height: 200px;
+  }
+  .hacker-target {
+    font-size: 1.4rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  .hacker-char { color: #333; transition: color 0.1s; }
+  .hacker-char.correct { color: #00e5ff; }
+  .hacker-char.wrong { color: #f472b6; background: rgba(244,114,182,0.15); }
+  .hacker-char.current { color: #fff; border-bottom: 2px solid var(--cyan); animation: blink 0.8s step-end infinite; }
+  .hacker-stats {
+    display: flex; gap: 2rem; margin-top: 1rem;
+    font-size: 0.72rem; color: var(--muted);
+  }
+  .hacker-stats span { color: var(--cyan); }
+  .hacker-input {
+    position: absolute; opacity: 0; pointer-events: none;
+  }
+  .hacker-click-hint {
+    font-size: 0.72rem;
+    color: var(--muted2);
+    font-family: var(--font-mono);
+    margin-top: 0.8rem;
+    text-align: center;
+  }
+  .progress-bar-wrap {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin: 1rem 0 0;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--cyan), var(--purple2));
+    border-radius: 2px;
+    transition: width 0.2s;
+  }
+
+  /* ===== GAME: SNAKE ===== */
+  #game-snake canvas {
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+  }
+
+  /* ===== GAME: MEMORY MATCH ===== */
+  .memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .mem-card {
+    aspect-ratio: 1;
+    border-radius: 6px;
+    cursor: none;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+  }
+  .mem-card.flipped { transform: rotateY(180deg); }
+  .mem-card.matched { transform: rotateY(180deg); }
+  .mem-card.matched .mem-front { border-color: var(--cyan); box-shadow: 0 0 12px rgba(0,229,255,0.3); }
+  .mem-front, .mem-back {
+    position: absolute; inset: 0;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .mem-back {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    font-size: 1.2rem;
+    color: var(--muted2);
+    font-family: var(--font-mono);
+  }
+  .mem-front {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    transform: rotateY(180deg);
+    font-size: 1.8rem;
+  }
+  .mem-stats {
+    display: flex; justify-content: center; gap: 3rem;
+    font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .mem-stats span { color: var(--cyan); font-weight: 700; }
+
+  /* ===== GAME: CATCH THE BUG ===== */
+  .bug-arena {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    background: #000;
+    border: 1px solid rgba(0,229,255,0.15);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: none;
+  }
+  .bug {
+    position: absolute;
+    font-size: 1.6rem;
+    cursor: none;
+    transition: none;
+    user-select: none;
+    animation: bugwiggle 0.3s ease-in-out infinite alternate;
+    line-height: 1;
+  }
+  @keyframes bugwiggle { from { transform: rotate(-10deg); } to { transform: rotate(10deg); } }
+  .bug-splat {
+    position: absolute;
+    font-size: 1.2rem;
+    pointer-events: none;
+    animation: splatfade 0.6s ease-out forwards;
+    line-height: 1;
+  }
+  @keyframes splatfade { from { opacity: 1; transform: scale(1.5); } to { opacity: 0; transform: scale(0.5); } }
+  .bug-stats {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+  .bug-stats span { color: var(--cyan); font-weight: 700; }
+  .timer-bar-wrap {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  .timer-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--cyan), var(--pink));
+    border-radius: 2px;
+    transition: width 0.1s linear;
+  }
+  .game-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #000;
+    background: var(--cyan);
+    border: none;
+    border-radius: 4px;
+    padding: 0.6rem 1.4rem;
+    cursor: none;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    display: flex; align-items: center; gap: 0.4rem;
-    transition: opacity 0.2s;
+    transition: all 0.2s;
+    margin-top: 1rem;
   }
-  .project-link:hover { opacity: 0.7; }
+  .game-action-btn:hover { box-shadow: 0 0 16px rgba(0,229,255,0.4); transform: translateY(-1px); }
+  .game-action-btn.secondary {
+    background: transparent;
+    color: var(--cyan);
+    border: 1px solid rgba(0,229,255,0.3);
+  }
+  .game-action-btn.secondary:hover { background: rgba(0,229,255,0.08); }
 
-  /* CV */
+  /* CV Section */
   #cv { background: var(--bg); }
   .cv-container {
     background: var(--surface);
@@ -805,18 +1046,6 @@
   .cv-item { margin-bottom: 1rem; }
   .cv-item-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
   .cv-item-sub { font-size: 0.8rem; color: var(--muted); font-family: var(--font-mono); }
-  .cv-upload-note {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 2rem;
-    border: 1px dashed var(--border2);
-    border-radius: 4px;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: var(--muted2);
-  }
-
-
 
   /* CONTACT */
   #contact { background: var(--bg2); }
@@ -911,13 +1140,9 @@
     position: relative;
     overflow: hidden;
   }
-  .form-submit:hover {
-    box-shadow: 0 0 20px rgba(0,229,255,0.4);
-    transform: translateY(-2px) scale(1.01);
-  }
+  .form-submit:hover { box-shadow: 0 0 20px rgba(0,229,255,0.4); transform: translateY(-2px) scale(1.01); }
   .form-submit:active { transform: translateY(0) scale(0.99); }
 
-  /* FOOTER */
   footer {
     background: var(--bg);
     border-top: 1px solid var(--border);
@@ -944,7 +1169,6 @@
   }
   .footer-social:hover { border-color: var(--border2); color: var(--cyan); }
 
-  /* ===== ACHIEVEMENT SYSTEM ===== */
   .achievement-toast {
     position: fixed;
     bottom: 6rem;
@@ -964,33 +1188,12 @@
     pointer-events: none;
   }
   .achievement-toast.show { transform: translateX(0); }
-  .achievement-icon {
-    font-size: 2rem;
-    flex-shrink: 0;
-    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.5));
-  }
+  .achievement-icon { font-size: 2rem; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(251,191,36,0.5)); }
   .achievement-text { flex: 1; }
-  .achievement-label {
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    color: var(--cyan);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 0.2rem;
-  }
-  .achievement-title {
-    font-size: 0.9rem;
-    font-weight: 700;
-    margin-bottom: 0.1rem;
-    color: var(--text);
-  }
-  .achievement-desc {
-    font-size: 0.72rem;
-    color: var(--muted);
-    font-family: var(--font-mono);
-  }
+  .achievement-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.2rem; }
+  .achievement-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.1rem; color: var(--text); }
+  .achievement-desc { font-size: 0.72rem; color: var(--muted); font-family: var(--font-mono); }
 
-  /* Achievement panel (bottom-left corner) */
   .achievements-panel {
     position: fixed;
     bottom: 2rem;
@@ -1020,7 +1223,6 @@
   .badge-pill.earned { opacity: 1; transform: translateX(0); }
   .badge-pill-icon { font-size: 1rem; }
 
-  /* RESPONSIVE */
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
     nav.scrolled { padding: 0.7rem 1.5rem; }
@@ -1033,9 +1235,10 @@
     footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
     .theme-toggle { bottom: 1.2rem; right: 1.2rem; }
     .achievement-toast { right: 1rem; max-width: 260px; }
+    .memory-grid { grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+    .game-selector { grid-template-columns: repeat(3, 1fr); }
   }
 
-  /* Noise overlay */
   body::before {
     content: '';
     position: fixed; inset: 0;
@@ -1049,23 +1252,17 @@
 </head>
 <body>
 
-<!-- Custom cursor -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
-
-<!-- ===== SCROLL PROGRESS BAR ===== -->
 <div class="scroll-progress-bar" id="scrollProgressBar"></div>
 
-<!-- ===== DARK/LIGHT TOGGLE BUTTON ===== -->
-<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle dark/light mode">
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
   <span class="icon icon-moon">🌙</span>
   <span class="icon icon-sun">☀️</span>
 </button>
 
-<!-- ===== ACHIEVEMENTS PANEL ===== -->
 <div class="achievements-panel" id="achievementsPanel"></div>
 
-<!-- ===== ACHIEVEMENT TOAST ===== -->
 <div class="achievement-toast" id="achievementToast">
   <div class="achievement-icon" id="toastIcon">🏆</div>
   <div class="achievement-text">
@@ -1095,35 +1292,26 @@
   <div class="hero-grid-bg"></div>
   <div class="hero-orb hero-orb-1"></div>
   <div class="hero-orb hero-orb-2"></div>
-
   <div class="hero-content">
     <div class="hero-badge">
       <span class="badge-dot"></span>
       Available for opportunities
     </div>
-
     <h1 class="hero-name">
       <span class="line1">Nicholas Abel</span>
       <span class="line2">Suryo Wicaksono</span>
     </h1>
-
     <p class="hero-tagline">
       <span class="typed" id="typed-text"></span>
     </p>
-
     <p class="hero-desc">
       Computer Science student, programmer, and creative problem-solver. I build things, break things, and learn from all of it.
     </p>
-
     <div class="hero-actions">
-      <a href="#projects" class="btn-primary">
-        <span>View Projects</span>
-        <span>→</span>
-      </a>
+      <a href="#projects" class="btn-primary"><span>View Projects</span><span>→</span></a>
       <a href="#contact" class="btn-outline">Get in Touch</a>
     </div>
   </div>
-
   <div class="hero-scroll">
     <div class="scroll-line"></div>
     Scroll to explore
@@ -1150,19 +1338,12 @@
         </div>
       </div>
     </div>
-
     <div class="about-text">
       <div class="section-tag reveal">Who I Am</div>
       <h3 class="reveal">A programmer who builds things and&nbsp;isn't afraid to figure it out.</h3>
-      <p class="reveal reveal-delay-1">
-        I'm a Computer Science student with a growing collection of projects and a genuine hunger to learn. Programming isn't just something I study — it's something I do. I've worked on real projects, worked through real problems, and picked up a range of skills along the way.
-      </p>
-      <p class="reveal reveal-delay-2">
-        What sets me apart isn't a list of credentials — it's the mindset. I'm the person who dives into something new without waiting to be told how. I thrive under pressure, stay sharp when things get hectic, and actually enjoy the challenge of figuring things out on the fly.
-      </p>
-      <p class="reveal reveal-delay-3">
-        I work well in a team and I'm comfortable leading one when needed. Whether I'm writing code, designing a workflow, or coordinating with people, I show up ready to contribute and take ownership. I believe good work comes from staying curious, communicating clearly, and never being too proud to learn something new.
-      </p>
+      <p class="reveal reveal-delay-1">I'm a Computer Science student with a growing collection of projects and a genuine hunger to learn. Programming isn't just something I study — it's something I do. I've worked on real projects, worked through real problems, and picked up a range of skills along the way.</p>
+      <p class="reveal reveal-delay-2">What sets me apart isn't a list of credentials — it's the mindset. I'm the person who dives into something new without waiting to be told how. I thrive under pressure, stay sharp when things get hectic, and actually enjoy the challenge of figuring things out on the fly.</p>
+      <p class="reveal reveal-delay-3">I work well in a team and I'm comfortable leading one when needed. Whether I'm writing code, designing a workflow, or coordinating with people, I show up ready to contribute and take ownership. I believe good work comes from staying curious, communicating clearly, and never being too proud to learn something new.</p>
       <div class="about-traits reveal reveal-delay-4">
         <span class="trait-chip">Team Player</span>
         <span class="trait-chip">Quick Learner</span>
@@ -1180,7 +1361,6 @@
   <div class="section-tag reveal">Tech Stack</div>
   <h2 class="section-title reveal">What I Work With</h2>
   <p class="section-sub reveal">From code to design to networks — here's the toolkit I've built up so far.</p>
-
   <div class="skills-grid">
     <div class="skill-card reveal">
       <div class="skill-card-icon">⌨️</div>
@@ -1191,35 +1371,24 @@
         <span class="skill-tag">HTML</span>
         <span class="skill-tag">Web Design</span>
       </div>
-      <!-- Radial skill bars -->
       <div class="skill-radials">
         <div class="radial-wrap">
-          <svg class="radial-svg" viewBox="0 0 56 56">
-            <circle class="radial-bg" cx="28" cy="28" r="26"/>
-            <circle class="radial-fill cyan" cx="28" cy="28" r="26" data-pct="75"/>
-          </svg>
+          <svg class="radial-svg" viewBox="0 0 56 56"><circle class="radial-bg" cx="28" cy="28" r="26"/><circle class="radial-fill cyan" cx="28" cy="28" r="26" data-pct="75"/></svg>
           <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">75%</div>
           <div class="radial-label">Java</div>
         </div>
         <div class="radial-wrap">
-          <svg class="radial-svg" viewBox="0 0 56 56">
-            <circle class="radial-bg" cx="28" cy="28" r="26"/>
-            <circle class="radial-fill purple" cx="28" cy="28" r="26" data-pct="65"/>
-          </svg>
+          <svg class="radial-svg" viewBox="0 0 56 56"><circle class="radial-bg" cx="28" cy="28" r="26"/><circle class="radial-fill purple" cx="28" cy="28" r="26" data-pct="65"/></svg>
           <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">65%</div>
           <div class="radial-label">Python</div>
         </div>
         <div class="radial-wrap">
-          <svg class="radial-svg" viewBox="0 0 56 56">
-            <circle class="radial-bg" cx="28" cy="28" r="26"/>
-            <circle class="radial-fill pink" cx="28" cy="28" r="26" data-pct="80"/>
-          </svg>
+          <svg class="radial-svg" viewBox="0 0 56 56"><circle class="radial-bg" cx="28" cy="28" r="26"/><circle class="radial-fill pink" cx="28" cy="28" r="26" data-pct="80"/></svg>
           <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">80%</div>
           <div class="radial-label">HTML/CSS</div>
         </div>
       </div>
     </div>
-
     <div class="skill-card reveal reveal-delay-1">
       <div class="skill-card-icon">🌐</div>
       <div class="skill-card-title">Networking</div>
@@ -1230,24 +1399,17 @@
       </div>
       <div class="skill-radials">
         <div class="radial-wrap">
-          <svg class="radial-svg" viewBox="0 0 56 56">
-            <circle class="radial-bg" cx="28" cy="28" r="26"/>
-            <circle class="radial-fill cyan" cx="28" cy="28" r="26" data-pct="60"/>
-          </svg>
+          <svg class="radial-svg" viewBox="0 0 56 56"><circle class="radial-bg" cx="28" cy="28" r="26"/><circle class="radial-fill cyan" cx="28" cy="28" r="26" data-pct="60"/></svg>
           <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">60%</div>
           <div class="radial-label">Cisco</div>
         </div>
         <div class="radial-wrap">
-          <svg class="radial-svg" viewBox="0 0 56 56">
-            <circle class="radial-bg" cx="28" cy="28" r="26"/>
-            <circle class="radial-fill purple" cx="28" cy="28" r="26" data-pct="55"/>
-          </svg>
+          <svg class="radial-svg" viewBox="0 0 56 56"><circle class="radial-bg" cx="28" cy="28" r="26"/><circle class="radial-fill purple" cx="28" cy="28" r="26" data-pct="55"/></svg>
           <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">55%</div>
           <div class="radial-label">Packet Tracer</div>
         </div>
       </div>
     </div>
-
     <div class="skill-card reveal reveal-delay-2">
       <div class="skill-card-icon">🎨</div>
       <div class="skill-card-title">Creative Tools</div>
@@ -1261,32 +1423,22 @@
       </div>
       <div class="skill-radials">
         <div class="radial-wrap">
-          <svg class="radial-svg" viewBox="0 0 56 56">
-            <circle class="radial-bg" cx="28" cy="28" r="26"/>
-            <circle class="radial-fill cyan" cx="28" cy="28" r="26" data-pct="85"/>
-          </svg>
+          <svg class="radial-svg" viewBox="0 0 56 56"><circle class="radial-bg" cx="28" cy="28" r="26"/><circle class="radial-fill cyan" cx="28" cy="28" r="26" data-pct="85"/></svg>
           <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">85%</div>
           <div class="radial-label">Photoshop</div>
         </div>
         <div class="radial-wrap">
-          <svg class="radial-svg" viewBox="0 0 56 56">
-            <circle class="radial-bg" cx="28" cy="28" r="26"/>
-            <circle class="radial-fill purple" cx="28" cy="28" r="26" data-pct="80"/>
-          </svg>
+          <svg class="radial-svg" viewBox="0 0 56 56"><circle class="radial-bg" cx="28" cy="28" r="26"/><circle class="radial-fill purple" cx="28" cy="28" r="26" data-pct="80"/></svg>
           <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">80%</div>
           <div class="radial-label">Premiere</div>
         </div>
         <div class="radial-wrap">
-          <svg class="radial-svg" viewBox="0 0 56 56">
-            <circle class="radial-bg" cx="28" cy="28" r="26"/>
-            <circle class="radial-fill pink" cx="28" cy="28" r="26" data-pct="70"/>
-          </svg>
+          <svg class="radial-svg" viewBox="0 0 56 56"><circle class="radial-bg" cx="28" cy="28" r="26"/><circle class="radial-fill pink" cx="28" cy="28" r="26" data-pct="70"/></svg>
           <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">70%</div>
           <div class="radial-label">After Effects</div>
         </div>
       </div>
     </div>
-
     <div class="skill-card reveal reveal-delay-3">
       <div class="skill-card-icon">🛠️</div>
       <div class="skill-card-title">Soft Skills</div>
@@ -1298,18 +1450,12 @@
       </div>
       <div class="skill-radials">
         <div class="radial-wrap">
-          <svg class="radial-svg" viewBox="0 0 56 56">
-            <circle class="radial-bg" cx="28" cy="28" r="26"/>
-            <circle class="radial-fill cyan" cx="28" cy="28" r="26" data-pct="90"/>
-          </svg>
+          <svg class="radial-svg" viewBox="0 0 56 56"><circle class="radial-bg" cx="28" cy="28" r="26"/><circle class="radial-fill cyan" cx="28" cy="28" r="26" data-pct="90"/></svg>
           <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">90%</div>
           <div class="radial-label">Teamwork</div>
         </div>
         <div class="radial-wrap">
-          <svg class="radial-svg" viewBox="0 0 56 56">
-            <circle class="radial-bg" cx="28" cy="28" r="26"/>
-            <circle class="radial-fill purple" cx="28" cy="28" r="26" data-pct="85"/>
-          </svg>
+          <svg class="radial-svg" viewBox="0 0 56 56"><circle class="radial-bg" cx="28" cy="28" r="26"/><circle class="radial-fill purple" cx="28" cy="28" r="26" data-pct="85"/></svg>
           <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">85%</div>
           <div class="radial-label">Problem Solving</div>
         </div>
@@ -1323,7 +1469,6 @@
   <div class="section-tag reveal">Work History</div>
   <h2 class="section-title reveal">Experience</h2>
   <p class="section-sub reveal">Just getting started. The best chapters are still being written.</p>
-
   <div class="exp-placeholder reveal">
     <div class="exp-placeholder-icon">📋</div>
     <h3>Nothing here yet</h3>
@@ -1336,7 +1481,6 @@
   <div class="section-tag reveal">Credentials</div>
   <h2 class="section-title reveal">Certificates</h2>
   <p class="section-sub reveal">Proof of skills, one certification at a time.</p>
-
   <div class="cert-grid" style="grid-template-columns: 1fr; max-width: 480px;">
     <div class="cert-card reveal" onclick="window.open('IOT.jpeg')">
       <div style="width:100%;height:200px;overflow:hidden;border-radius:4px;margin-bottom:1.2rem;border:1px solid var(--border);">
@@ -1349,54 +1493,168 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- PROJECTS / ARCADE -->
 <section id="projects">
   <div class="section-tag reveal">Work</div>
   <h2 class="section-title reveal">Projects</h2>
-  <p class="section-sub reveal">Things I've built, broken, and shipped. More on GitHub.</p>
 
-  <div class="projects-grid">
-    <div class="project-card reveal">
-      <div class="project-img">🖥️</div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="project-tag">Python</span>
-          <span class="project-tag">CLI</span>
+  <!-- Arcade intro -->
+  <div class="arcade-intro reveal">
+    <div class="arcade-intro-badge">🎮 Easter Egg Found</div>
+    <h3>Oh wait — the projects are in here!</h3>
+    <p>Feeling bored? The real projects are still loading... but in the meantime, pick a game and have some fun. Choose your challenge below!</p>
+  </div>
+
+  <!-- Game selector -->
+  <div class="game-selector reveal">
+    <button class="game-btn active" onclick="selectGame('trex')" id="btn-trex">
+      <span class="game-btn-icon">🦕</span>
+      <span class="game-btn-name">T-Rex Runner</span>
+      <span class="game-btn-desc">Jump & survive</span>
+    </button>
+    <button class="game-btn" onclick="selectGame('hacker')" id="btn-hacker">
+      <span class="game-btn-icon">💻</span>
+      <span class="game-btn-name">Hacker Typing</span>
+      <span class="game-btn-desc">Type to hack</span>
+    </button>
+    <button class="game-btn" onclick="selectGame('snake')" id="btn-snake">
+      <span class="game-btn-icon">🐍</span>
+      <span class="game-btn-name">Snake Terminal</span>
+      <span class="game-btn-desc">Classic snake</span>
+    </button>
+    <button class="game-btn" onclick="selectGame('memory')" id="btn-memory">
+      <span class="game-btn-icon">🧠</span>
+      <span class="game-btn-name">Memory Match</span>
+      <span class="game-btn-desc">Match the langs</span>
+    </button>
+    <button class="game-btn" onclick="selectGame('bug')" id="btn-bug">
+      <span class="game-btn-icon">🪲</span>
+      <span class="game-btn-name">Catch the Bug</span>
+      <span class="game-btn-desc">Fix the bugs!</span>
+    </button>
+  </div>
+
+  <!-- ===== GAME 1: T-REX RUNNER ===== -->
+  <div class="game-window active" id="game-trex">
+    <div class="game-titlebar">
+      <div class="tb-dot tb-red"></div>
+      <div class="tb-dot tb-yellow"></div>
+      <div class="tb-dot tb-green"></div>
+      <div class="game-titlebar-name">nicholas_abel.exe — T-Rex Runner</div>
+    </div>
+    <div class="game-body">
+      <div class="game-score-bar">
+        <span>SCORE</span>
+        <span class="game-score-val" id="trex-score">0</span>
+        <span>HI</span>
+        <span class="game-score-val" id="trex-hi">0</span>
+        <span>SPEED</span>
+        <span class="game-score-val" id="trex-speed">1x</span>
+      </div>
+      <canvas id="trex-canvas" width="700" height="200"></canvas>
+      <div class="game-msg" id="trex-msg"><span>Press SPACE or TAP to start running!</span></div>
+    </div>
+  </div>
+
+  <!-- ===== GAME 2: HACKER TYPING ===== -->
+  <div class="game-window" id="game-hacker">
+    <div class="game-titlebar">
+      <div class="tb-dot tb-red"></div>
+      <div class="tb-dot tb-yellow"></div>
+      <div class="tb-dot tb-green"></div>
+      <div class="game-titlebar-name">nicholas_abel.exe — Hacker Typing Challenge</div>
+    </div>
+    <div class="game-body">
+      <div class="game-score-bar">
+        <span>WPM</span>
+        <span class="game-score-val" id="hacker-wpm">0</span>
+        <span>ACCURACY</span>
+        <span class="game-score-val" id="hacker-acc">100%</span>
+        <span>ROUND</span>
+        <span class="game-score-val" id="hacker-round">1/5</span>
+      </div>
+      <div class="hacker-display" id="hacker-display" onclick="focusHackerInput()" tabindex="0">
+        <div id="hacker-target" class="hacker-target"></div>
+        <div class="hacker-stats">
+          <div>Errors: <span id="hacker-errors">0</span></div>
+          <div>Time: <span id="hacker-time">—</span>s</div>
         </div>
-        <div class="project-title">Project Title</div>
-        <p class="project-desc">Add your project description here. What does it do? What problem does it solve?</p>
-        <div class="project-links">
-          <a href="https://github.com/trippindang" class="project-link" target="_blank">↗ GitHub</a>
-        </div>
+        <div class="progress-bar-wrap"><div class="progress-bar-fill" id="hacker-progress" style="width:0%"></div></div>
+      </div>
+      <input type="text" class="hacker-input" id="hacker-input" autocomplete="off" spellcheck="false" />
+      <div class="hacker-click-hint">Click the terminal above to start typing</div>
+      <div style="display:flex;gap:0.8rem;margin-top:1rem;">
+        <button class="game-action-btn" onclick="resetHacker()">↺ New Challenge</button>
       </div>
     </div>
-    <div class="project-card reveal reveal-delay-1">
-      <div class="project-img">🌐</div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="project-tag">HTML</span>
-          <span class="project-tag">CSS</span>
-          <span class="project-tag">JS</span>
-        </div>
-        <div class="project-title">Project Title</div>
-        <p class="project-desc">Add your project description here. What does it do? What problem does it solve?</p>
-        <div class="project-links">
-          <a href="https://github.com/trippindang" class="project-link" target="_blank">↗ GitHub</a>
-        </div>
+  </div>
+
+  <!-- ===== GAME 3: SNAKE TERMINAL ===== -->
+  <div class="game-window" id="game-snake">
+    <div class="game-titlebar">
+      <div class="tb-dot tb-red"></div>
+      <div class="tb-dot tb-yellow"></div>
+      <div class="tb-dot tb-green"></div>
+      <div class="game-titlebar-name">nicholas_abel.exe — Snake Terminal v1.0</div>
+    </div>
+    <div class="game-body">
+      <div class="game-score-bar">
+        <span>SCORE</span>
+        <span class="game-score-val" id="snake-score">0</span>
+        <span>HI-SCORE</span>
+        <span class="game-score-val" id="snake-hi">0</span>
+        <span>LENGTH</span>
+        <span class="game-score-val" id="snake-len">3</span>
+      </div>
+      <canvas id="snake-canvas" width="700" height="350"></canvas>
+      <div class="game-msg" id="snake-msg"><span>Press WASD or Arrow Keys to start!</span></div>
+      <div style="display:flex;gap:0.8rem;margin-top:1rem;">
+        <button class="game-action-btn" onclick="resetSnake()">↺ Restart</button>
       </div>
     </div>
-    <div class="project-card reveal reveal-delay-2">
-      <div class="project-img">⚙️</div>
-      <div class="project-body">
-        <div class="project-tags">
-          <span class="project-tag">Java</span>
-          <span class="project-tag">OOP</span>
-        </div>
-        <div class="project-title">Project Title</div>
-        <p class="project-desc">Add your project description here. What does it do? What problem does it solve?</p>
-        <div class="project-links">
-          <a href="https://github.com/trippindang" class="project-link" target="_blank">↗ GitHub</a>
-        </div>
+  </div>
+
+  <!-- ===== GAME 4: MEMORY MATCH ===== -->
+  <div class="game-window" id="game-memory">
+    <div class="game-titlebar">
+      <div class="tb-dot tb-red"></div>
+      <div class="tb-dot tb-yellow"></div>
+      <div class="tb-dot tb-green"></div>
+      <div class="game-titlebar-name">nicholas_abel.exe — Memory Match: Dev Edition</div>
+    </div>
+    <div class="game-body">
+      <div class="mem-stats">
+        <div>Moves: <span id="mem-moves">0</span></div>
+        <div>Matches: <span id="mem-matches">0</span>/8</div>
+        <div>Best: <span id="mem-best">—</span></div>
+      </div>
+      <div class="memory-grid" id="memory-grid"></div>
+      <div style="text-align:center;margin-top:1.2rem;">
+        <button class="game-action-btn" onclick="resetMemory()">↺ New Game</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== GAME 5: CATCH THE BUG ===== -->
+  <div class="game-window" id="game-bug">
+    <div class="game-titlebar">
+      <div class="tb-dot tb-red"></div>
+      <div class="tb-dot tb-yellow"></div>
+      <div class="tb-dot tb-green"></div>
+      <div class="game-titlebar-name">nicholas_abel.exe — Catch the Bug!</div>
+    </div>
+    <div class="game-body">
+      <div class="bug-stats">
+        <div>Score: <span id="bug-score">0</span></div>
+        <div>Bugs Fixed: <span id="bug-count">0</span></div>
+        <div>Escaped: <span id="bug-escaped">0</span>/3</div>
+        <div>Best: <span id="bug-best">0</span></div>
+      </div>
+      <div class="timer-bar-wrap"><div class="timer-bar-fill" id="bug-timer-bar" style="width:100%"></div></div>
+      <div class="bug-arena" id="bug-arena"></div>
+      <div style="display:flex;gap:0.8rem;margin-top:1rem;">
+        <button class="game-action-btn" onclick="startBugGame()" id="bug-start-btn">▶ Start Game</button>
+        <button class="game-action-btn secondary" onclick="resetBugGame()">↺ Reset</button>
       </div>
     </div>
   </div>
@@ -1407,22 +1665,18 @@
   <div class="section-tag reveal">Resume</div>
   <h2 class="section-title reveal">Curriculum Vitae</h2>
   <p class="section-sub reveal">Full resume available for download.</p>
-
   <div class="cv-container reveal">
     <div class="cv-header">
       <div class="cv-header-text">
         <h3>Nicholas Abel Suryo Wicaksono</h3>
         <p>Informatics Student · Programmer · Creative</p>
       </div>
-      <a href="CV.pdf" class="cv-download" download>
-        ↓ Download CV
-      </a>
     </div>
     <div class="cv-preview">
       <div>
         <div class="cv-section-label">Education</div>
         <div class="cv-item">
-          <div class="cv-item-title">Universitas Atma Jaya Yogyakarta</div>
+          <div class="cv-item-title">Indonesia Digital Technology University</div>
           <div class="cv-item-sub">Informatics · 2024 — 2028 (est.)</div>
         </div>
         <div class="cv-item">
@@ -1448,8 +1702,6 @@
     </div>
   </div>
 </section>
-
-
 
 <!-- CONTACT -->
 <section id="contact">
@@ -1501,7 +1753,6 @@
         </a>
       </div>
     </div>
-
     <div class="contact-form reveal">
       <div class="form-group">
         <label class="form-label">Your Name</label>
@@ -1554,38 +1805,26 @@ function animateRing() {
   requestAnimationFrame(animateRing);
 }
 animateRing();
-document.querySelectorAll('a, button, .cert-card, .skill-card, .project-card').forEach(el => {
+document.querySelectorAll('a, button, .cert-card, .skill-card, .mem-card, .game-btn, .bug').forEach(el => {
   el.addEventListener('mouseenter', () => cursorRing.classList.add('hovered'));
   el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovered'));
 });
 
 // ===== NAV SCROLL =====
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 50);
-});
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
 
 // ===== TYPING EFFECT =====
-const phrases = [
-  'Informatics Student',
-  'Java Developer',
-  'Python Programmer',
-  'Web Designer',
-  'Creative Editor',
-  'Cisco Networker',
-  'Problem Solver'
-];
+const phrases = ['Informatics Student','Java Developer','Python Programmer','Web Designer','Creative Editor','Cisco Networker','Problem Solver'];
 let phraseIndex = 0, charIndex = 0, deleting = false;
 const typedEl = document.getElementById('typed-text');
 function typeEffect() {
   const current = phrases[phraseIndex];
   if (!deleting) {
-    typedEl.textContent = current.slice(0, charIndex + 1);
-    charIndex++;
+    typedEl.textContent = current.slice(0, charIndex + 1); charIndex++;
     if (charIndex === current.length) { deleting = true; setTimeout(typeEffect, 1800); return; }
   } else {
-    typedEl.textContent = current.slice(0, charIndex - 1);
-    charIndex--;
+    typedEl.textContent = current.slice(0, charIndex - 1); charIndex--;
     if (charIndex === 0) { deleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; }
   }
   setTimeout(typeEffect, deleting ? 50 : 80);
@@ -1595,12 +1834,7 @@ setTimeout(typeEffect, 1500);
 // ===== SCROLL REVEAL =====
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
+  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
 }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
 reveals.forEach(el => observer.observe(el));
 
@@ -1610,10 +1844,7 @@ function handleFormSubmit() {
   btn.textContent = 'Message Sent ✓';
   btn.style.background = '#00e5a0';
   unlockAchievement('messenger');
-  setTimeout(() => {
-    btn.textContent = 'Send Message →';
-    btn.style.background = 'var(--cyan)';
-  }, 3000);
+  setTimeout(() => { btn.textContent = 'Send Message →'; btn.style.background = 'var(--cyan)'; }, 3000);
 }
 
 // ===== SMOOTH ANCHOR SCROLL =====
@@ -1625,19 +1856,18 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// ===== PARALLAX ON HERO ORBS =====
+// ===== PARALLAX =====
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
   document.querySelector('.hero-orb-1').style.transform = `translateY(${scrollY * 0.2}px)`;
   document.querySelector('.hero-orb-2').style.transform = `translateY(${scrollY * -0.15}px)`;
 });
 
-// ===== [NEW] DARK/LIGHT MODE TOGGLE =====
+// ===== DARK/LIGHT TOGGLE =====
 const themeToggle = document.getElementById('themeToggle');
 const html = document.documentElement;
 const savedTheme = localStorage.getItem('na-theme') || 'dark';
 html.setAttribute('data-theme', savedTheme);
-
 themeToggle.addEventListener('click', () => {
   const current = html.getAttribute('data-theme');
   const next = current === 'dark' ? 'light' : 'dark';
@@ -1646,79 +1876,46 @@ themeToggle.addEventListener('click', () => {
   if (next === 'light') unlockAchievement('daywalker');
 });
 
-// ===== [NEW] SCROLL PROGRESS BAR =====
+// ===== SCROLL PROGRESS BAR =====
 const progressBar = document.getElementById('scrollProgressBar');
 window.addEventListener('scroll', () => {
   const scrollTop = window.scrollY;
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const pct = (scrollTop / docHeight) * 100;
-  progressBar.style.width = pct + '%';
+  progressBar.style.width = ((scrollTop / docHeight) * 100) + '%';
 });
 
-// ===== [NEW] RADIAL SKILL BARS ANIMATION =====
-// circumference of r=26 circle ≈ 163.36
+// ===== RADIAL SKILL BARS =====
 const CIRC = 2 * Math.PI * 26;
 const radialObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      const card = entry.target;
-      card.querySelectorAll('.radial-fill').forEach(circle => {
+      entry.target.querySelectorAll('.radial-fill').forEach(circle => {
         const pct = parseFloat(circle.getAttribute('data-pct')) / 100;
-        const offset = CIRC * (1 - pct);
-        // Set circumference correctly
         circle.style.strokeDasharray = CIRC;
-        circle.style.strokeDashoffset = CIRC; // start empty
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            circle.style.strokeDashoffset = offset;
-          });
-        });
+        circle.style.strokeDashoffset = CIRC;
+        requestAnimationFrame(() => requestAnimationFrame(() => { circle.style.strokeDashoffset = CIRC * (1 - pct); }));
       });
-      radialObserver.unobserve(card);
+      radialObserver.unobserve(entry.target);
     }
   });
 }, { threshold: 0.3 });
 document.querySelectorAll('.skill-card').forEach(card => {
-  // Init all radial fills as empty
-  card.querySelectorAll('.radial-fill').forEach(c => {
-    c.style.strokeDasharray = CIRC;
-    c.style.strokeDashoffset = CIRC;
-  });
+  card.querySelectorAll('.radial-fill').forEach(c => { c.style.strokeDasharray = CIRC; c.style.strokeDashoffset = CIRC; });
   radialObserver.observe(card);
 });
 
-// ===== [NEW] ACHIEVEMENT SYSTEM =====
+// ===== ACHIEVEMENT SYSTEM =====
 const ACHIEVEMENTS = {
-  explorer: {
-    icon: '🗺️',
-    title: 'The Explorer',
-    desc: 'Scrolled to the very bottom',
-    badge: '🗺️ The Explorer'
-  },
-  daywalker: {
-    icon: '☀️',
-    title: 'Day Walker',
-    desc: 'Switched to light mode',
-    badge: '☀️ Day Walker'
-  },
-  messenger: {
-    icon: '✉️',
-    title: 'First Contact',
-    desc: 'Sent a message',
-    badge: '✉️ First Contact'
-  },
-  skillseeker: {
-    icon: '🔍',
-    title: 'Skill Seeker',
-    desc: 'Checked out the tech stack',
-    badge: '🔍 Skill Seeker'
-  },
-  certified: {
-    icon: '🏅',
-    title: 'Certified Fan',
-    desc: 'Viewed the certificates',
-    badge: '🏅 Certified Fan'
-  }
+  explorer: { icon: '🗺️', title: 'The Explorer', desc: 'Scrolled to the very bottom', badge: '🗺️ The Explorer' },
+  daywalker: { icon: '☀️', title: 'Day Walker', desc: 'Switched to light mode', badge: '☀️ Day Walker' },
+  messenger: { icon: '✉️', title: 'First Contact', desc: 'Sent a message', badge: '✉️ First Contact' },
+  skillseeker: { icon: '🔍', title: 'Skill Seeker', desc: 'Checked out the tech stack', badge: '🔍 Skill Seeker' },
+  certified: { icon: '🏅', title: 'Certified Fan', desc: 'Viewed the certificates', badge: '🏅 Certified Fan' },
+  gamer: { icon: '🎮', title: 'Found the Arcade!', desc: 'Discovered the mini-games', badge: '🎮 Gamer' },
+  trexmaster: { icon: '🦕', title: 'Dino King', desc: 'Scored 500+ in T-Rex Runner', badge: '🦕 Dino King' },
+  hacker: { icon: '💻', title: 'L33t Hacker', desc: 'Completed Hacker Typing', badge: '💻 L33t Hacker' },
+  bugfixer: { icon: '🔧', title: 'Bug Exterminator', desc: 'Caught 20+ bugs', badge: '🔧 Bug Exterminator' },
+  memory: { icon: '🧠', title: 'Photographic Memory', desc: 'Completed Memory Match', badge: '🧠 Memory' }
 };
 
 const earnedSet = new Set(JSON.parse(localStorage.getItem('na-achievements') || '[]'));
@@ -1732,8 +1929,7 @@ let toastTimeout = null;
 function renderPanel() {
   panel.innerHTML = '';
   earnedSet.forEach(id => {
-    const a = ACHIEVEMENTS[id];
-    if (!a) return;
+    const a = ACHIEVEMENTS[id]; if (!a) return;
     const pill = document.createElement('div');
     pill.className = 'badge-pill';
     pill.innerHTML = `<span class="badge-pill-icon">${a.icon}</span>${a.title}`;
@@ -1757,36 +1953,678 @@ function unlockAchievement(id) {
   renderPanel();
 }
 
-// Trigger achievement observers
-const sectionAchievements = {
-  skills: 'skillseeker',
-  certificates: 'certified'
-};
+const sectionAchievements = { skills: 'skillseeker', certificates: 'certified', projects: 'gamer' };
 Object.entries(sectionAchievements).forEach(([sectionId, achievId]) => {
-  const el = document.getElementById(sectionId);
-  if (!el) return;
+  const el = document.getElementById(sectionId); if (!el) return;
   const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        setTimeout(() => unlockAchievement(achievId), 800);
-        obs.unobserve(e.target);
-      }
-    });
+    entries.forEach(e => { if (e.isIntersecting) { setTimeout(() => unlockAchievement(achievId), 800); obs.unobserve(e.target); } });
   }, { threshold: 0.4 });
   obs.observe(el);
 });
 
-// Explorer — reached footer
 const footer = document.querySelector('footer');
 const explorerObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      unlockAchievement('explorer');
-      explorerObs.unobserve(e.target);
-    }
-  });
+  entries.forEach(e => { if (e.isIntersecting) { unlockAchievement('explorer'); explorerObs.unobserve(e.target); } });
 }, { threshold: 0.5 });
 explorerObs.observe(footer);
+
+// ===== GAME SWITCHER =====
+function selectGame(name) {
+  document.querySelectorAll('.game-window').forEach(w => w.classList.remove('active'));
+  document.querySelectorAll('.game-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('game-' + name).classList.add('active');
+  document.getElementById('btn-' + name).classList.add('active');
+  if (name === 'snake') resetSnake();
+}
+
+// =======================================================
+// GAME 1: T-REX RUNNER
+// =======================================================
+(function() {
+  const canvas = document.getElementById('trex-canvas');
+  const ctx = canvas.getContext('2d');
+  const scoreEl = document.getElementById('trex-score');
+  const hiEl = document.getElementById('trex-hi');
+  const speedEl = document.getElementById('trex-speed');
+  const msgEl = document.getElementById('trex-msg');
+
+  let state = 'idle';
+  let score = 0, hiScore = parseInt(localStorage.getItem('trex-hi') || '0');
+  let frameId;
+  hiEl.textContent = hiScore;
+
+  const GROUND = 160;
+  const player = { x: 60, y: GROUND, w: 36, h: 44, vy: 0, jumping: false, frame: 0, frameTimer: 0 };
+  let obstacles = [];
+  let clouds = [{ x: 200, y: 30, w: 80 }, { x: 500, y: 50, w: 60 }];
+  let gameSpeed = 4;
+  let spawnTimer = 0;
+  let spawnInterval = 90;
+  let frameCount = 0;
+  let started = false;
+
+  function getCyan() {
+    return getComputedStyle(document.documentElement).getPropertyValue('--cyan').trim() || '#00e5ff';
+  }
+  function getPurple() {
+    return getComputedStyle(document.documentElement).getPropertyValue('--purple2').trim() || '#a78bfa';
+  }
+
+  function drawGround() {
+    ctx.strokeStyle = getCyan();
+    ctx.lineWidth = 1.5;
+    ctx.globalAlpha = 0.3;
+    ctx.beginPath();
+    ctx.moveTo(0, GROUND + player.h + 4);
+    ctx.lineTo(canvas.width, GROUND + player.h + 4);
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+  }
+
+  function drawPlayer() {
+    const p = player;
+    ctx.fillStyle = getCyan();
+    // Body
+    ctx.fillRect(p.x, p.y, p.w, p.h);
+    // Eye
+    ctx.fillStyle = '#000';
+    ctx.fillRect(p.x + p.w - 10, p.y + 6, 7, 7);
+    // Legs (animated)
+    ctx.fillStyle = getCyan();
+    const legOff = (p.frame % 2 === 0) ? 4 : -4;
+    ctx.fillRect(p.x + 4, p.y + p.h, 10, 10 + legOff);
+    ctx.fillRect(p.x + p.w - 14, p.y + p.h, 10, 10 - legOff);
+    // Label
+    ctx.fillStyle = '#000';
+    ctx.font = 'bold 8px monospace';
+    ctx.fillText('.exe', p.x + 2, p.y + p.h / 2 + 4);
+  }
+
+  function drawObstacle(ob) {
+    ctx.fillStyle = getPurple();
+    ctx.fillRect(ob.x, ob.y, ob.w, ob.h);
+    // Cactus-like top
+    ctx.fillRect(ob.x - 5, ob.y + 8, ob.w + 10, 8);
+  }
+
+  function drawCloud(c) {
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--border2').trim() || 'rgba(255,255,255,0.12)';
+    ctx.beginPath();
+    ctx.ellipse(c.x, c.y, c.w / 2, 14, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(c.x + 20, c.y - 6, 20, 16, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function spawnObstacle() {
+    const heights = [30, 44, 55];
+    const h = heights[Math.floor(Math.random() * heights.length)];
+    obstacles.push({ x: canvas.width, y: GROUND + player.h - h, w: 18, h });
+  }
+
+  function checkCollision() {
+    for (const ob of obstacles) {
+      if (player.x + 4 < ob.x + ob.w && player.x + player.w - 4 > ob.x &&
+          player.y + 4 < ob.y + ob.h && player.y + player.h > ob.y + 4) return true;
+    }
+    return false;
+  }
+
+  function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Clouds
+    clouds.forEach(c => {
+      c.x -= gameSpeed * 0.3;
+      if (c.x + c.w < 0) c.x = canvas.width + 100;
+      drawCloud(c);
+    });
+
+    drawGround();
+
+    // Player physics
+    if (player.jumping) {
+      player.vy += 0.6;
+      player.y += player.vy;
+      if (player.y >= GROUND) { player.y = GROUND; player.vy = 0; player.jumping = false; }
+    }
+
+    // Leg animation
+    player.frameTimer++;
+    if (player.frameTimer > 8) { player.frame++; player.frameTimer = 0; }
+
+    drawPlayer();
+
+    // Obstacles
+    spawnTimer++;
+    if (spawnTimer >= spawnInterval) {
+      spawnObstacle();
+      spawnTimer = 0;
+      spawnInterval = Math.max(40, spawnInterval - 1);
+    }
+    obstacles.forEach(ob => { ob.x -= gameSpeed; drawObstacle(ob); });
+    obstacles = obstacles.filter(ob => ob.x + ob.w > 0);
+
+    // Score
+    frameCount++;
+    if (frameCount % 6 === 0) score++;
+    scoreEl.textContent = score;
+    gameSpeed = 4 + Math.floor(score / 100) * 0.5;
+    speedEl.textContent = (1 + Math.floor(score / 100) * 0.125).toFixed(2) + 'x';
+
+    if (score >= 500) unlockAchievement('trexmaster');
+
+    if (checkCollision()) {
+      if (score > hiScore) { hiScore = score; localStorage.setItem('trex-hi', hiScore); }
+      hiEl.textContent = hiScore;
+      state = 'dead';
+      msgEl.innerHTML = `<span>Game Over! Score: ${score}</span> — Press SPACE or TAP to restart`;
+      return;
+    }
+
+    frameId = requestAnimationFrame(gameLoop);
+  }
+
+  function jump() {
+    if (state === 'dead' || state === 'idle') {
+      resetTrex();
+      state = 'running';
+      msgEl.innerHTML = '';
+      frameId = requestAnimationFrame(gameLoop);
+    }
+    if (!player.jumping && state === 'running') {
+      player.jumping = true;
+      player.vy = -14;
+    }
+  }
+
+  function resetTrex() {
+    score = 0; frameCount = 0; gameSpeed = 4; spawnTimer = 0; spawnInterval = 90;
+    obstacles = [];
+    player.y = GROUND; player.vy = 0; player.jumping = false;
+    if (frameId) cancelAnimationFrame(frameId);
+  }
+
+  document.addEventListener('keydown', e => {
+    if ((e.code === 'Space' || e.code === 'ArrowUp') && document.getElementById('game-trex').classList.contains('active')) {
+      e.preventDefault(); jump();
+    }
+  });
+  canvas.addEventListener('click', jump);
+  canvas.addEventListener('touchstart', e => { e.preventDefault(); jump(); }, { passive: false });
+
+  // Draw idle state
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawGround();
+  drawPlayer();
+})();
+
+// =======================================================
+// GAME 2: HACKER TYPING
+// =======================================================
+(function() {
+  const WORDS = [
+    'sudo rm -rf /', 'git commit -m "fix"', 'npm install', 'python3 main.py',
+    'SELECT * FROM users', 'chmod 777 server.sh', 'ping 192.168.1.1',
+    'ssh root@server.io', 'docker run -d nginx', 'git push origin main',
+    'javac Main.java', 'gcc -o hack hack.c', 'curl -X POST /api',
+    'netstat -tulpn', 'ifconfig eth0 up', 'nmap -sV localhost',
+    'import tensorflow as tf', 'class Hacker extends Human', 'while(true) { hack(); }'
+  ];
+
+  let rounds = [], currentRound = 0, totalRounds = 5;
+  let typed = [], errors = 0, startTime = null, wpmHistory = [];
+  let inputEl = document.getElementById('hacker-input');
+  let targetEl = document.getElementById('hacker-target');
+  let wpmEl = document.getElementById('hacker-wpm');
+  let accEl = document.getElementById('hacker-acc');
+  let roundEl = document.getElementById('hacker-round');
+  let errEl = document.getElementById('hacker-errors');
+  let timeEl = document.getElementById('hacker-time');
+  let progressEl = document.getElementById('hacker-progress');
+  let timerInterval = null;
+
+  function getWords() {
+    const shuffled = [...WORDS].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, totalRounds);
+  }
+
+  function renderTarget() {
+    const word = rounds[currentRound] || '';
+    targetEl.innerHTML = word.split('').map((ch, i) => {
+      let cls = 'hacker-char';
+      if (i < typed.length) cls += typed[i] === ch ? ' correct' : ' wrong';
+      else if (i === typed.length) cls += ' current';
+      return `<span class="${cls}">${ch === ' ' ? '&nbsp;' : ch}</span>`;
+    }).join('');
+    const pct = (typed.length / word.length) * 100;
+    progressEl.style.width = Math.min(pct, 100) + '%';
+  }
+
+  function calcWPM() {
+    if (!startTime) return 0;
+    const elapsed = (Date.now() - startTime) / 60000;
+    const words = rounds[currentRound].length / 5;
+    return Math.round(words / elapsed);
+  }
+
+  function startTimer() {
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      if (startTime) timeEl.textContent = ((Date.now() - startTime) / 1000).toFixed(1);
+    }, 100);
+  }
+
+  function nextRound() {
+    currentRound++;
+    if (currentRound >= totalRounds) {
+      const avgWpm = Math.round(wpmHistory.reduce((a, b) => a + b, 0) / wpmHistory.length);
+      targetEl.innerHTML = `<span style="color:var(--cyan);font-size:1rem;">ACCESS GRANTED! Avg WPM: ${avgWpm}</span><br><span style="color:var(--muted);font-size:0.85rem;">Excellent hacking skills, ${avgWpm > 60 ? 'elite hacker' : 'junior dev'}!</span>`;
+      progressEl.style.width = '100%';
+      clearInterval(timerInterval);
+      unlockAchievement('hacker');
+      return;
+    }
+    typed = []; errors = 0; startTime = null;
+    roundEl.textContent = `${currentRound + 1}/${totalRounds}`;
+    errEl.textContent = '0';
+    timeEl.textContent = '—';
+    progressEl.style.width = '0%';
+    renderTarget();
+    inputEl.value = '';
+  }
+
+  function resetHacker() {
+    rounds = getWords();
+    currentRound = 0; typed = []; errors = 0; startTime = null; wpmHistory = [];
+    clearInterval(timerInterval);
+    wpmEl.textContent = '0';
+    accEl.textContent = '100%';
+    roundEl.textContent = `1/${totalRounds}`;
+    errEl.textContent = '0';
+    timeEl.textContent = '—';
+    progressEl.style.width = '0%';
+    renderTarget();
+    inputEl.value = '';
+  }
+  window.resetHacker = resetHacker;
+
+  window.focusHackerInput = function() { inputEl.focus(); };
+
+  inputEl.addEventListener('input', () => {
+    const word = rounds[currentRound] || '';
+    const val = inputEl.value;
+    if (!startTime && val.length > 0) { startTime = Date.now(); startTimer(); }
+    typed = val.split('');
+    let errs = 0;
+    typed.forEach((ch, i) => { if (ch !== word[i]) errs++; });
+    errors = errs;
+    errEl.textContent = errors;
+    const acc = typed.length > 0 ? Math.round(((typed.length - errors) / typed.length) * 100) : 100;
+    accEl.textContent = acc + '%';
+    wpmEl.textContent = calcWPM();
+    renderTarget();
+
+    if (val === word) {
+      wpmHistory.push(calcWPM());
+      inputEl.value = '';
+      setTimeout(nextRound, 300);
+    }
+  });
+
+  document.getElementById('hacker-display').addEventListener('keydown', e => {
+    if (e.key !== 'Tab') return;
+    e.preventDefault(); inputEl.focus();
+  });
+
+  resetHacker();
+})();
+
+// =======================================================
+// GAME 3: SNAKE TERMINAL
+// =======================================================
+(function() {
+  const canvas = document.getElementById('snake-canvas');
+  const ctx = canvas.getContext('2d');
+  const scoreEl = document.getElementById('snake-score');
+  const hiEl = document.getElementById('snake-hi');
+  const lenEl = document.getElementById('snake-len');
+  const msgEl = document.getElementById('snake-msg');
+
+  const CELL = 20;
+  const COLS = Math.floor(canvas.width / CELL);
+  const ROWS = Math.floor(canvas.height / CELL);
+  let snake, dir, nextDir, food, score, hiScore, running, frameId, stepInterval;
+  hiScore = parseInt(localStorage.getItem('snake-hi') || '0');
+  hiEl.textContent = hiScore;
+
+  function getCyan() { return getComputedStyle(document.documentElement).getPropertyValue('--cyan').trim() || '#00e5ff'; }
+  function getPurple() { return getComputedStyle(document.documentElement).getPropertyValue('--purple2').trim() || '#a78bfa'; }
+  function getPink() { return getComputedStyle(document.documentElement).getPropertyValue('--pink').trim() || '#f472b6'; }
+
+  function placeFood() {
+    let pos;
+    do {
+      pos = { x: Math.floor(Math.random() * COLS), y: Math.floor(Math.random() * ROWS) };
+    } while (snake.some(s => s.x === pos.x && s.y === pos.y));
+    food = pos;
+  }
+
+  function initSnake() {
+    snake = [{ x: 5, y: 10 }, { x: 4, y: 10 }, { x: 3, y: 10 }];
+    dir = { x: 1, y: 0 }; nextDir = { x: 1, y: 0 };
+    score = 0; running = false;
+    placeFood();
+    scoreEl.textContent = '0';
+    lenEl.textContent = '3';
+    msgEl.innerHTML = '<span>Press WASD or Arrow Keys to start!</span>';
+    draw();
+  }
+
+  function draw() {
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Grid
+    ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+    ctx.lineWidth = 0.5;
+    for (let x = 0; x <= COLS; x++) { ctx.beginPath(); ctx.moveTo(x * CELL, 0); ctx.lineTo(x * CELL, canvas.height); ctx.stroke(); }
+    for (let y = 0; y <= ROWS; y++) { ctx.beginPath(); ctx.moveTo(0, y * CELL); ctx.lineTo(canvas.width, y * CELL); ctx.stroke(); }
+
+    // Border
+    ctx.strokeStyle = getCyan();
+    ctx.lineWidth = 1.5;
+    ctx.globalAlpha = 0.3;
+    ctx.strokeRect(0, 0, canvas.width, canvas.height);
+    ctx.globalAlpha = 1;
+
+    // Snake
+    snake.forEach((seg, i) => {
+      const ratio = i / snake.length;
+      if (i === 0) ctx.fillStyle = getCyan();
+      else {
+        // Gradient from cyan to purple
+        const r = Math.round(ratio * 124);
+        const g = Math.round((1 - ratio) * 229);
+        const b = Math.round(ratio * 200 + (1 - ratio) * 255);
+        ctx.fillStyle = `rgb(${r},${g},${b})`;
+      }
+      ctx.fillRect(seg.x * CELL + 1, seg.y * CELL + 1, CELL - 2, CELL - 2);
+      if (i === 0) {
+        // Eyes
+        ctx.fillStyle = '#000';
+        ctx.fillRect(seg.x * CELL + 5, seg.y * CELL + 4, 3, 3);
+        ctx.fillRect(seg.x * CELL + 12, seg.y * CELL + 4, 3, 3);
+      }
+    });
+
+    // Food (pulsing)
+    const pulse = 0.7 + 0.3 * Math.sin(Date.now() / 200);
+    ctx.fillStyle = getPink();
+    ctx.globalAlpha = pulse;
+    ctx.beginPath();
+    ctx.arc(food.x * CELL + CELL / 2, food.y * CELL + CELL / 2, CELL / 2 - 2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = '#fff';
+    ctx.font = '10px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('🐛', food.x * CELL + CELL / 2, food.y * CELL + CELL / 2 + 4);
+    ctx.textAlign = 'left';
+  }
+
+  function step() {
+    dir = nextDir;
+    const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
+
+    if (head.x < 0 || head.x >= COLS || head.y < 0 || head.y >= ROWS || snake.some(s => s.x === head.x && s.y === head.y)) {
+      running = false;
+      if (score > hiScore) { hiScore = score; localStorage.setItem('snake-hi', hiScore); hiEl.textContent = hiScore; }
+      msgEl.innerHTML = `<span>Game Over! Score: ${score}</span> — Press ↺ to restart`;
+      return;
+    }
+
+    snake.unshift(head);
+    if (head.x === food.x && head.y === food.y) {
+      score += 10; placeFood();
+      scoreEl.textContent = score;
+      lenEl.textContent = snake.length;
+    } else {
+      snake.pop();
+    }
+    draw();
+    stepInterval = setTimeout(step, Math.max(80, 150 - score * 0.5));
+  }
+
+  function startSnake(dx, dy) {
+    if (dir.x === -dx && dir.y === -dy) return;
+    nextDir = { x: dx, y: dy };
+    if (!running) { running = true; msgEl.innerHTML = ''; step(); }
+  }
+
+  window.resetSnake = function() { clearTimeout(stepInterval); initSnake(); };
+
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('game-snake').classList.contains('active')) return;
+    const map = { ArrowUp: [0,-1], ArrowDown: [0,1], ArrowLeft: [-1,0], ArrowRight: [1,0], w: [0,-1], s: [0,1], a: [-1,0], d: [1,0] };
+    if (map[e.key]) { e.preventDefault(); startSnake(...map[e.key]); }
+  });
+
+  initSnake();
+  setInterval(draw, 50);
+})();
+
+// =======================================================
+// GAME 4: MEMORY MATCH
+// =======================================================
+(function() {
+  const ICONS = [
+    { label: 'JS', emoji: '🟨' },
+    { label: 'Py', emoji: '🐍' },
+    { label: 'Java', emoji: '☕' },
+    { label: 'HTML', emoji: '🌐' },
+    { label: 'CSS', emoji: '🎨' },
+    { label: 'SQL', emoji: '🗄️' },
+    { label: 'Git', emoji: '🔀' },
+    { label: 'C++', emoji: '⚙️' }
+  ];
+
+  let cards = [], flipped = [], matched = 0, moves = 0, bestMoves = parseInt(localStorage.getItem('mem-best') || '9999');
+  const grid = document.getElementById('memory-grid');
+  const movesEl = document.getElementById('mem-moves');
+  const matchEl = document.getElementById('mem-matches');
+  const bestEl = document.getElementById('mem-best');
+
+  if (bestMoves < 9999) bestEl.textContent = bestMoves;
+
+  function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+  function buildGrid() {
+    const pairs = shuffle([...ICONS, ...ICONS]);
+    cards = pairs.map((icon, i) => ({ id: i, icon, flipped: false, matched: false }));
+    grid.innerHTML = '';
+    cards.forEach((card, i) => {
+      const el = document.createElement('div');
+      el.className = 'mem-card';
+      el.innerHTML = `
+        <div class="mem-back">?</div>
+        <div class="mem-front">${card.icon.emoji}<div style="font-size:0.5rem;font-family:var(--font-mono);color:var(--muted);margin-top:2px;">${card.icon.label}</div></div>
+      `;
+      el.addEventListener('click', () => flipCard(i, el));
+      grid.appendChild(el);
+    });
+  }
+
+  function flipCard(idx, el) {
+    if (flipped.length >= 2) return;
+    if (cards[idx].flipped || cards[idx].matched) return;
+    cards[idx].flipped = true;
+    el.classList.add('flipped');
+    flipped.push({ idx, el });
+
+    if (flipped.length === 2) {
+      moves++;
+      movesEl.textContent = moves;
+      const [a, b] = flipped;
+      if (cards[a.idx].icon.label === cards[b.idx].icon.label) {
+        cards[a.idx].matched = cards[b.idx].matched = true;
+        a.el.classList.add('matched');
+        b.el.classList.add('matched');
+        matched++;
+        matchEl.textContent = matched;
+        flipped = [];
+        if (matched === ICONS.length) {
+          if (moves < bestMoves) { bestMoves = moves; localStorage.setItem('mem-best', bestMoves); }
+          bestEl.textContent = bestMoves;
+          unlockAchievement('memory');
+          setTimeout(() => alert(`🎉 You won in ${moves} moves!`), 300);
+        }
+      } else {
+        setTimeout(() => {
+          cards[a.idx].flipped = cards[b.idx].flipped = false;
+          a.el.classList.remove('flipped');
+          b.el.classList.remove('flipped');
+          flipped = [];
+        }, 900);
+      }
+    }
+  }
+
+  window.resetMemory = function() {
+    flipped = []; matched = 0; moves = 0;
+    movesEl.textContent = '0';
+    matchEl.textContent = '0';
+    if (bestMoves < 9999) bestEl.textContent = bestMoves;
+    buildGrid();
+  };
+
+  buildGrid();
+})();
+
+// =======================================================
+// GAME 5: CATCH THE BUG
+// =======================================================
+(function() {
+  const arena = document.getElementById('bug-arena');
+  const scoreEl = document.getElementById('bug-score');
+  const countEl = document.getElementById('bug-count');
+  const escapedEl = document.getElementById('bug-escaped');
+  const bestEl = document.getElementById('bug-best');
+  const timerBar = document.getElementById('bug-timer-bar');
+  const startBtn = document.getElementById('bug-start-btn');
+
+  const BUGS = ['🪲', '🐛', '🦟', '🐜', '🪳'];
+  const GAME_DURATION = 30;
+
+  let score = 0, count = 0, escaped = 0, bestScore = parseInt(localStorage.getItem('bug-best') || '0');
+  let bugs = [], gameRunning = false;
+  let timeLeft = GAME_DURATION;
+  let gameInterval, spawnInterval, timerInterval;
+
+  bestEl.textContent = bestScore;
+
+  function spawnBug() {
+    if (!gameRunning || escaped >= 3) return;
+    const bug = document.createElement('div');
+    bug.className = 'bug';
+    bug.textContent = BUGS[Math.floor(Math.random() * BUGS.length)];
+    const maxX = arena.clientWidth - 40;
+    const maxY = arena.clientHeight - 40;
+    let x = Math.random() * maxX;
+    let y = Math.random() * maxY;
+    bug.style.left = x + 'px';
+    bug.style.top = y + 'px';
+
+    let dx = (Math.random() - 0.5) * 3;
+    let dy = (Math.random() - 0.5) * 3;
+    let moveFrame;
+
+    function moveBug() {
+      if (!gameRunning) return;
+      x += dx; y += dy;
+      if (x < 0 || x > maxX) dx *= -1;
+      if (y < 0 || y > maxY) dy *= -1;
+      bug.style.left = x + 'px';
+      bug.style.top = y + 'px';
+      moveFrame = requestAnimationFrame(moveBug);
+    }
+    moveBug();
+
+    const escapeTimer = setTimeout(() => {
+      if (bug.parentNode) {
+        bug.remove();
+        escaped++;
+        escapedEl.textContent = escaped;
+        if (escaped >= 3) endGame();
+      }
+    }, 4000 - Math.min(score * 20, 2000));
+
+    bug.addEventListener('click', (e) => {
+      e.stopPropagation();
+      clearTimeout(escapeTimer);
+      cancelAnimationFrame(moveFrame);
+      const rect = arena.getBoundingClientRect();
+      const splat = document.createElement('div');
+      splat.className = 'bug-splat';
+      splat.textContent = '💥';
+      splat.style.left = x + 'px';
+      splat.style.top = y + 'px';
+      arena.appendChild(splat);
+      setTimeout(() => splat.remove(), 600);
+      bug.remove();
+      score += 10 + Math.floor(score / 50) * 5;
+      count++;
+      scoreEl.textContent = score;
+      countEl.textContent = count;
+      if (count >= 20) unlockAchievement('bugfixer');
+    });
+
+    arena.appendChild(bug);
+  }
+
+  function startBugGame() {
+    score = 0; count = 0; escaped = 0; timeLeft = GAME_DURATION; gameRunning = true;
+    arena.innerHTML = '';
+    scoreEl.textContent = '0'; countEl.textContent = '0'; escapedEl.textContent = '0';
+    startBtn.textContent = '⏳ Running...';
+    startBtn.disabled = true;
+
+    spawnInterval = setInterval(spawnBug, 800);
+    timerInterval = setInterval(() => {
+      timeLeft -= 0.1;
+      timerBar.style.width = (timeLeft / GAME_DURATION * 100) + '%';
+      if (timeLeft <= 0) endGame();
+    }, 100);
+  }
+  window.startBugGame = startBugGame;
+
+  function endGame() {
+    gameRunning = false;
+    clearInterval(spawnInterval);
+    clearInterval(timerInterval);
+    arena.querySelectorAll('.bug').forEach(b => b.remove());
+    if (score > bestScore) { bestScore = score; localStorage.setItem('bug-best', bestScore); bestEl.textContent = bestScore; }
+    startBtn.textContent = '▶ Play Again';
+    startBtn.disabled = false;
+    timerBar.style.width = '0%';
+    const msg = document.createElement('div');
+    msg.style.cssText = 'position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--font-mono);color:var(--cyan);font-size:1rem;font-weight:700;gap:0.5rem;';
+    msg.innerHTML = `<span style="font-size:2rem">🔧</span><span>Time's up! Score: ${score}</span><span style="font-size:0.75rem;color:var(--muted);">Bugs fixed: ${count} | Escaped: ${escaped}</span>`;
+    arena.appendChild(msg);
+  }
+
+  window.resetBugGame = function() {
+    gameRunning = false;
+    clearInterval(spawnInterval); clearInterval(timerInterval);
+    arena.innerHTML = '';
+    score = 0; count = 0; escaped = 0; timeLeft = GAME_DURATION;
+    scoreEl.textContent = '0'; countEl.textContent = '0'; escapedEl.textContent = '0';
+    timerBar.style.width = '100%';
+    startBtn.textContent = '▶ Start Game';
+    startBtn.disabled = false;
+  };
+})();
 </script>
 </body>
 </html>
