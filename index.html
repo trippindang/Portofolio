@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,7 +28,60 @@
     --font-mono: 'Space Mono', monospace;
     --glow-cyan: 0 0 40px rgba(0,229,255,0.15);
     --glow-purple: 0 0 40px rgba(124,58,237,0.2);
+    --transition-theme: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
   }
+
+  /* ===== LIGHT MODE VARIABLES ===== */
+  [data-theme="light"] {
+    --bg: #f5f5fa;
+    --bg2: #eeeef7;
+    --bg3: #e8e8f2;
+    --surface: #ffffff;
+    --surface2: #f0f0fa;
+    --border: rgba(0,0,0,0.08);
+    --border2: rgba(0,0,0,0.15);
+    --text: #0d0d1a;
+    --muted: #555570;
+    --muted2: #9999bb;
+    --cyan: #0070cc;
+    --cyan2: #0088dd;
+    --purple: #6d28d9;
+    --purple2: #7c3aed;
+    --pink: #db2777;
+    --glow-cyan: 0 0 40px rgba(0,112,204,0.12);
+    --glow-purple: 0 0 40px rgba(109,40,217,0.12);
+  }
+
+  [data-theme="light"] .hero-grid-bg {
+    background-image:
+      linear-gradient(rgba(0,112,204,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,112,204,0.05) 1px, transparent 1px);
+  }
+
+  [data-theme="light"] nav {
+    background: rgba(245,245,250,0.85);
+  }
+
+  [data-theme="light"] .skill-tag {
+    background: var(--bg2);
+    color: var(--muted);
+  }
+
+  [data-theme="light"] .project-img {
+    background: linear-gradient(135deg, var(--bg3), var(--surface2));
+  }
+
+  [data-theme="light"] .about-avatar-placeholder {
+    background: linear-gradient(135deg, var(--surface2), var(--bg3));
+  }
+
+  [data-theme="light"] .form-input,
+  [data-theme="light"] .form-textarea {
+    background: var(--bg2);
+    border-color: var(--border2);
+  }
+
+  [data-theme="light"] body::before { opacity: 0.2; }
 
   html { scroll-behavior: smooth; }
 
@@ -38,6 +91,7 @@
     font-family: var(--font-display);
     overflow-x: hidden;
     cursor: none;
+    transition: var(--transition-theme);
   }
 
   /* Custom cursor */
@@ -66,6 +120,53 @@
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 2px; }
+
+  /* ===== DARK/LIGHT TOGGLE ===== */
+  .theme-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 500;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid var(--border2);
+    background: var(--surface2);
+    cursor: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+  }
+  .theme-toggle:hover {
+    transform: scale(1.15) rotate(15deg);
+    box-shadow: 0 0 20px rgba(0,229,255,0.3);
+    border-color: var(--cyan);
+  }
+  .theme-toggle .icon {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
+    position: absolute;
+  }
+  .theme-toggle .icon-moon { opacity: 1; transform: rotate(0deg) scale(1); }
+  .theme-toggle .icon-sun  { opacity: 0; transform: rotate(90deg) scale(0.5); }
+  [data-theme="light"] .theme-toggle .icon-moon { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+  [data-theme="light"] .theme-toggle .icon-sun  { opacity: 1; transform: rotate(0deg) scale(1); }
+
+  /* ===== TOP SCROLL PROGRESS BAR ===== */
+  .scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--cyan), var(--purple2), var(--pink));
+    z-index: 999;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 10px rgba(0,229,255,0.5);
+  }
 
   /* NAV */
   nav {
@@ -414,7 +515,7 @@
   }
   .trait-chip:hover { background: rgba(124,58,237,0.15); border-color: var(--purple2); }
 
-  /* SKILLS */
+  /* ===== SKILLS WITH VISUAL PROGRESS BARS ===== */
   #skills { background: var(--bg); }
   .skills-grid {
     display: grid;
@@ -453,7 +554,7 @@
     letter-spacing: 0.1em;
     margin-bottom: 1rem;
   }
-  .skill-items { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-items { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
   .skill-tag {
     font-family: var(--font-mono);
     font-size: 0.72rem;
@@ -465,6 +566,59 @@
     background: var(--bg);
   }
   .skill-tag:hover { color: var(--text); border-color: var(--border2); }
+
+  /* Skill radial bars */
+  .skill-radials {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .radial-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .radial-svg {
+    width: 64px;
+    height: 64px;
+    transform: rotate(-90deg);
+  }
+  .radial-bg { fill: none; stroke: var(--border2); stroke-width: 5; }
+  .radial-fill {
+    fill: none;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-dasharray: 163;
+    stroke-dashoffset: 163;
+    transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .radial-fill.cyan   { stroke: var(--cyan); }
+  .radial-fill.purple { stroke: var(--purple2); }
+  .radial-fill.pink   { stroke: var(--pink); }
+  .radial-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--muted);
+    text-align: center;
+    max-width: 64px;
+    line-height: 1.3;
+  }
+  .radial-pct {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -48px;
+    height: 64px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text);
+    pointer-events: none;
+  }
 
   /* EXPERIENCE */
   #experience { background: var(--bg2); }
@@ -662,6 +816,86 @@
     color: var(--muted2);
   }
 
+  /* ===== TESTIMONIALS ===== */
+  #testimonials { background: var(--bg2); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .testi-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    position: relative;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+  }
+  .testi-card::before {
+    content: '"';
+    position: absolute;
+    top: -0.5rem;
+    left: 1.5rem;
+    font-size: 5rem;
+    font-family: var(--font-display);
+    font-weight: 800;
+    color: var(--cyan);
+    opacity: 0.08;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .testi-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-5px);
+    box-shadow: var(--glow-purple);
+  }
+  .testi-stars {
+    display: flex;
+    gap: 0.2rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+  .testi-star { color: #fbbf24; }
+  .testi-text {
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .testi-author {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .testi-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--cyan), var(--purple2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+  }
+  .testi-name {
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 0.1rem;
+  }
+  .testi-role {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--muted2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
   /* CONTACT */
   #contact { background: var(--bg2); }
   .contact-wrap {
@@ -751,9 +985,15 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
     cursor: none;
-    transition: all 0.2s;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
   }
-  .form-submit:hover { box-shadow: 0 0 20px rgba(0,229,255,0.4); opacity: 0.9; }
+  .form-submit:hover {
+    box-shadow: 0 0 20px rgba(0,229,255,0.4);
+    transform: translateY(-2px) scale(1.01);
+  }
+  .form-submit:active { transform: translateY(0) scale(0.99); }
 
   /* FOOTER */
   footer {
@@ -782,6 +1022,82 @@
   }
   .footer-social:hover { border-color: var(--border2); color: var(--cyan); }
 
+  /* ===== ACHIEVEMENT SYSTEM ===== */
+  .achievement-toast {
+    position: fixed;
+    bottom: 6rem;
+    right: 2rem;
+    z-index: 600;
+    background: var(--surface);
+    border: 1px solid var(--cyan);
+    border-radius: 10px;
+    padding: 1rem 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 0 30px rgba(0,229,255,0.2), 0 10px 40px rgba(0,0,0,0.4);
+    transform: translateX(calc(100% + 3rem));
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    max-width: 300px;
+    pointer-events: none;
+  }
+  .achievement-toast.show { transform: translateX(0); }
+  .achievement-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.5));
+  }
+  .achievement-text { flex: 1; }
+  .achievement-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.2rem;
+  }
+  .achievement-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.1rem;
+    color: var(--text);
+  }
+  .achievement-desc {
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-family: var(--font-mono);
+  }
+
+  /* Achievement panel (bottom-left corner) */
+  .achievements-panel {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .badge-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 100px;
+    padding: 0.3rem 0.8rem 0.3rem 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.4s, transform 0.4s;
+    white-space: nowrap;
+  }
+  .badge-pill.earned { opacity: 1; transform: translateX(0); }
+  .badge-pill-icon { font-size: 1rem; }
+
   /* RESPONSIVE */
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
@@ -793,6 +1109,8 @@
     .cv-preview { grid-template-columns: 1fr; }
     .hero-scroll { left: 1.5rem; }
     footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+    .theme-toggle { bottom: 1.2rem; right: 1.2rem; }
+    .achievement-toast { right: 1rem; max-width: 260px; }
   }
 
   /* Noise overlay */
@@ -813,6 +1131,28 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
+<!-- ===== SCROLL PROGRESS BAR ===== -->
+<div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+<!-- ===== DARK/LIGHT TOGGLE BUTTON ===== -->
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle dark/light mode">
+  <span class="icon icon-moon">🌙</span>
+  <span class="icon icon-sun">☀️</span>
+</button>
+
+<!-- ===== ACHIEVEMENTS PANEL ===== -->
+<div class="achievements-panel" id="achievementsPanel"></div>
+
+<!-- ===== ACHIEVEMENT TOAST ===== -->
+<div class="achievement-toast" id="achievementToast">
+  <div class="achievement-icon" id="toastIcon">🏆</div>
+  <div class="achievement-text">
+    <div class="achievement-label">Achievement Unlocked!</div>
+    <div class="achievement-title" id="toastTitle">The Explorer</div>
+    <div class="achievement-desc" id="toastDesc">Scrolled to the bottom</div>
+  </div>
+</div>
+
 <!-- NAV -->
 <nav id="nav">
   <a class="nav-logo" href="#hero">nicholas_abel.exe</a>
@@ -823,6 +1163,7 @@
     <li><a href="#certificates">Certificates</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#cv">CV</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a class="nav-cta" href="#contact">Hire Me</a>
@@ -879,7 +1220,6 @@
             <span class="avatar-initials">NA</span>
             <span class="avatar-label">Photo coming soon</span>
           </div>
-          <!-- When user uploads photo: <img id="avatar-img" src="YOUR_PHOTO.jpg" alt="Nicholas Abel" /> -->
         </div>
         <div class="about-corner tl"></div>
         <div class="about-corner br"></div>
@@ -930,7 +1270,35 @@
         <span class="skill-tag">HTML</span>
         <span class="skill-tag">Web Design</span>
       </div>
+      <!-- Radial skill bars -->
+      <div class="skill-radials">
+        <div class="radial-wrap">
+          <svg class="radial-svg" viewBox="0 0 56 56">
+            <circle class="radial-bg" cx="28" cy="28" r="26"/>
+            <circle class="radial-fill cyan" cx="28" cy="28" r="26" data-pct="75"/>
+          </svg>
+          <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">75%</div>
+          <div class="radial-label">Java</div>
+        </div>
+        <div class="radial-wrap">
+          <svg class="radial-svg" viewBox="0 0 56 56">
+            <circle class="radial-bg" cx="28" cy="28" r="26"/>
+            <circle class="radial-fill purple" cx="28" cy="28" r="26" data-pct="65"/>
+          </svg>
+          <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">65%</div>
+          <div class="radial-label">Python</div>
+        </div>
+        <div class="radial-wrap">
+          <svg class="radial-svg" viewBox="0 0 56 56">
+            <circle class="radial-bg" cx="28" cy="28" r="26"/>
+            <circle class="radial-fill pink" cx="28" cy="28" r="26" data-pct="80"/>
+          </svg>
+          <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">80%</div>
+          <div class="radial-label">HTML/CSS</div>
+        </div>
+      </div>
     </div>
+
     <div class="skill-card reveal reveal-delay-1">
       <div class="skill-card-icon">🌐</div>
       <div class="skill-card-title">Networking</div>
@@ -939,7 +1307,26 @@
         <span class="skill-tag">Network Config</span>
         <span class="skill-tag">Packet Tracer</span>
       </div>
+      <div class="skill-radials">
+        <div class="radial-wrap">
+          <svg class="radial-svg" viewBox="0 0 56 56">
+            <circle class="radial-bg" cx="28" cy="28" r="26"/>
+            <circle class="radial-fill cyan" cx="28" cy="28" r="26" data-pct="60"/>
+          </svg>
+          <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">60%</div>
+          <div class="radial-label">Cisco</div>
+        </div>
+        <div class="radial-wrap">
+          <svg class="radial-svg" viewBox="0 0 56 56">
+            <circle class="radial-bg" cx="28" cy="28" r="26"/>
+            <circle class="radial-fill purple" cx="28" cy="28" r="26" data-pct="55"/>
+          </svg>
+          <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">55%</div>
+          <div class="radial-label">Packet Tracer</div>
+        </div>
+      </div>
     </div>
+
     <div class="skill-card reveal reveal-delay-2">
       <div class="skill-card-icon">🎨</div>
       <div class="skill-card-title">Creative Tools</div>
@@ -951,7 +1338,34 @@
         <span class="skill-tag">Video Editing</span>
         <span class="skill-tag">Motion Graphics</span>
       </div>
+      <div class="skill-radials">
+        <div class="radial-wrap">
+          <svg class="radial-svg" viewBox="0 0 56 56">
+            <circle class="radial-bg" cx="28" cy="28" r="26"/>
+            <circle class="radial-fill cyan" cx="28" cy="28" r="26" data-pct="85"/>
+          </svg>
+          <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">85%</div>
+          <div class="radial-label">Photoshop</div>
+        </div>
+        <div class="radial-wrap">
+          <svg class="radial-svg" viewBox="0 0 56 56">
+            <circle class="radial-bg" cx="28" cy="28" r="26"/>
+            <circle class="radial-fill purple" cx="28" cy="28" r="26" data-pct="80"/>
+          </svg>
+          <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">80%</div>
+          <div class="radial-label">Premiere</div>
+        </div>
+        <div class="radial-wrap">
+          <svg class="radial-svg" viewBox="0 0 56 56">
+            <circle class="radial-bg" cx="28" cy="28" r="26"/>
+            <circle class="radial-fill pink" cx="28" cy="28" r="26" data-pct="70"/>
+          </svg>
+          <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">70%</div>
+          <div class="radial-label">After Effects</div>
+        </div>
+      </div>
     </div>
+
     <div class="skill-card reveal reveal-delay-3">
       <div class="skill-card-icon">🛠️</div>
       <div class="skill-card-title">Soft Skills</div>
@@ -960,6 +1374,24 @@
         <span class="skill-tag">Problem Solving</span>
         <span class="skill-tag">Communication</span>
         <span class="skill-tag">Time Management</span>
+      </div>
+      <div class="skill-radials">
+        <div class="radial-wrap">
+          <svg class="radial-svg" viewBox="0 0 56 56">
+            <circle class="radial-bg" cx="28" cy="28" r="26"/>
+            <circle class="radial-fill cyan" cx="28" cy="28" r="26" data-pct="90"/>
+          </svg>
+          <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">90%</div>
+          <div class="radial-label">Teamwork</div>
+        </div>
+        <div class="radial-wrap">
+          <svg class="radial-svg" viewBox="0 0 56 56">
+            <circle class="radial-bg" cx="28" cy="28" r="26"/>
+            <circle class="radial-fill purple" cx="28" cy="28" r="26" data-pct="85"/>
+          </svg>
+          <div class="radial-pct" style="margin-top:-52px;height:52px;width:56px;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.7rem;font-weight:700;color:var(--text);">85%</div>
+          <div class="radial-label">Problem Solving</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1061,7 +1493,6 @@
         <h3>Nicholas Abel Suryo Wicaksono</h3>
         <p>Informatics Student · Programmer · Creative</p>
       </div>
-      <!-- Update href to your actual CV PDF path when ready -->
       <a href="CV.pdf" class="cv-download" download>
         ↓ Download CV
       </a>
@@ -1093,7 +1524,63 @@
           <div class="cv-item-sub">Infrastructure</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
+<!-- ===== TESTIMONIALS SECTION ===== -->
+<section id="testimonials">
+  <div class="section-tag reveal">Social Proof</div>
+  <h2 class="section-title reveal">What People Say</h2>
+  <p class="section-sub reveal">Words from teammates, classmates, and collaborators who've seen my work up close.</p>
+
+  <div class="testimonials-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">
+        <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+      </div>
+      <p class="testi-text">
+        "Nicholas is the kind of teammate you want on every project. He jumps into new tech without hesitation, always delivers, and somehow makes it look easy. His problem-solving instinct is genuinely impressive."
+      </p>
+      <div class="testi-author">
+        <div class="testi-avatar">AK</div>
+        <div>
+          <div class="testi-name">Add Teammate Name</div>
+          <div class="testi-role">Classmate · UDINUS</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="testi-stars">
+        <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+      </div>
+      <p class="testi-text">
+        "Working with Nicholas on our group project was a great experience. He takes ownership, communicates well, and actually cares about the quality of the work. He's also a quick learner — pick it up fast and does it right."
+      </p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background: linear-gradient(135deg, var(--pink), var(--purple2));">RD</div>
+        <div>
+          <div class="testi-name">Add Collaborator Name</div>
+          <div class="testi-role">Project Partner · Replace This</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal reveal-delay-2">
+      <div class="testi-stars">
+        <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+      </div>
+      <p class="testi-text">
+        "Nicholas has a rare combination of technical skill and creative thinking. Whether it's code or design, he brings both sides together in a way that most people can't. Reliable, sharp, and easy to work with."
+      </p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background: linear-gradient(135deg, var(--cyan2), var(--cyan));">FH</div>
+        <div>
+          <div class="testi-name">Add Friend/Mentor Name</div>
+          <div class="testi-role">Mentor · Replace This</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1184,7 +1671,7 @@
 </footer>
 
 <script>
-// Custom cursor
+// ===== CUSTOM CURSOR =====
 const cursor = document.getElementById('cursor');
 const cursorRing = document.getElementById('cursorRing');
 let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
@@ -1201,18 +1688,18 @@ function animateRing() {
   requestAnimationFrame(animateRing);
 }
 animateRing();
-document.querySelectorAll('a, button, .cert-card, .skill-card, .project-card').forEach(el => {
+document.querySelectorAll('a, button, .cert-card, .skill-card, .project-card, .testi-card').forEach(el => {
   el.addEventListener('mouseenter', () => cursorRing.classList.add('hovered'));
   el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovered'));
 });
 
-// Nav scroll
+// ===== NAV SCROLL =====
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// Typing effect
+// ===== TYPING EFFECT =====
 const phrases = [
   'Informatics Student',
   'Java Developer',
@@ -1239,7 +1726,7 @@ function typeEffect() {
 }
 setTimeout(typeEffect, 1500);
 
-// Scroll reveal
+// ===== SCROLL REVEAL =====
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -1251,18 +1738,19 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
 reveals.forEach(el => observer.observe(el));
 
-// Form submit
+// ===== FORM SUBMIT =====
 function handleFormSubmit() {
   const btn = document.querySelector('.form-submit');
   btn.textContent = 'Message Sent ✓';
   btn.style.background = '#00e5a0';
+  unlockAchievement('messenger');
   setTimeout(() => {
     btn.textContent = 'Send Message →';
     btn.style.background = 'var(--cyan)';
   }, 3000);
 }
 
-// Smooth anchor scroll
+// ===== SMOOTH ANCHOR SCROLL =====
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
@@ -1271,12 +1759,168 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// Parallax on hero orbs
+// ===== PARALLAX ON HERO ORBS =====
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
   document.querySelector('.hero-orb-1').style.transform = `translateY(${scrollY * 0.2}px)`;
   document.querySelector('.hero-orb-2').style.transform = `translateY(${scrollY * -0.15}px)`;
 });
+
+// ===== [NEW] DARK/LIGHT MODE TOGGLE =====
+const themeToggle = document.getElementById('themeToggle');
+const html = document.documentElement;
+const savedTheme = localStorage.getItem('na-theme') || 'dark';
+html.setAttribute('data-theme', savedTheme);
+
+themeToggle.addEventListener('click', () => {
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('na-theme', next);
+  if (next === 'light') unlockAchievement('daywalker');
+});
+
+// ===== [NEW] SCROLL PROGRESS BAR =====
+const progressBar = document.getElementById('scrollProgressBar');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = (scrollTop / docHeight) * 100;
+  progressBar.style.width = pct + '%';
+});
+
+// ===== [NEW] RADIAL SKILL BARS ANIMATION =====
+// circumference of r=26 circle ≈ 163.36
+const CIRC = 2 * Math.PI * 26;
+const radialObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const card = entry.target;
+      card.querySelectorAll('.radial-fill').forEach(circle => {
+        const pct = parseFloat(circle.getAttribute('data-pct')) / 100;
+        const offset = CIRC * (1 - pct);
+        // Set circumference correctly
+        circle.style.strokeDasharray = CIRC;
+        circle.style.strokeDashoffset = CIRC; // start empty
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            circle.style.strokeDashoffset = offset;
+          });
+        });
+      });
+      radialObserver.unobserve(card);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.skill-card').forEach(card => {
+  // Init all radial fills as empty
+  card.querySelectorAll('.radial-fill').forEach(c => {
+    c.style.strokeDasharray = CIRC;
+    c.style.strokeDashoffset = CIRC;
+  });
+  radialObserver.observe(card);
+});
+
+// ===== [NEW] ACHIEVEMENT SYSTEM =====
+const ACHIEVEMENTS = {
+  explorer: {
+    icon: '🗺️',
+    title: 'The Explorer',
+    desc: 'Scrolled to the very bottom',
+    badge: '🗺️ The Explorer'
+  },
+  daywalker: {
+    icon: '☀️',
+    title: 'Day Walker',
+    desc: 'Switched to light mode',
+    badge: '☀️ Day Walker'
+  },
+  messenger: {
+    icon: '✉️',
+    title: 'First Contact',
+    desc: 'Sent a message',
+    badge: '✉️ First Contact'
+  },
+  skillseeker: {
+    icon: '🔍',
+    title: 'Skill Seeker',
+    desc: 'Checked out the tech stack',
+    badge: '🔍 Skill Seeker'
+  },
+  certified: {
+    icon: '🏅',
+    title: 'Certified Fan',
+    desc: 'Viewed the certificates',
+    badge: '🏅 Certified Fan'
+  }
+};
+
+const earnedSet = new Set(JSON.parse(localStorage.getItem('na-achievements') || '[]'));
+const panel = document.getElementById('achievementsPanel');
+const toast = document.getElementById('achievementToast');
+const toastIcon = document.getElementById('toastIcon');
+const toastTitle = document.getElementById('toastTitle');
+const toastDesc = document.getElementById('toastDesc');
+let toastTimeout = null;
+
+function renderPanel() {
+  panel.innerHTML = '';
+  earnedSet.forEach(id => {
+    const a = ACHIEVEMENTS[id];
+    if (!a) return;
+    const pill = document.createElement('div');
+    pill.className = 'badge-pill';
+    pill.innerHTML = `<span class="badge-pill-icon">${a.icon}</span>${a.title}`;
+    panel.appendChild(pill);
+    requestAnimationFrame(() => requestAnimationFrame(() => pill.classList.add('earned')));
+  });
+}
+renderPanel();
+
+function unlockAchievement(id) {
+  if (earnedSet.has(id)) return;
+  earnedSet.add(id);
+  localStorage.setItem('na-achievements', JSON.stringify([...earnedSet]));
+  const a = ACHIEVEMENTS[id];
+  toastIcon.textContent = a.icon;
+  toastTitle.textContent = a.title;
+  toastDesc.textContent = a.desc;
+  toast.classList.add('show');
+  if (toastTimeout) clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => toast.classList.remove('show'), 3500);
+  renderPanel();
+}
+
+// Trigger achievement observers
+const sectionAchievements = {
+  skills: 'skillseeker',
+  certificates: 'certified'
+};
+Object.entries(sectionAchievements).forEach(([sectionId, achievId]) => {
+  const el = document.getElementById(sectionId);
+  if (!el) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => unlockAchievement(achievId), 800);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  obs.observe(el);
+});
+
+// Explorer — reached footer
+const footer = document.querySelector('footer');
+const explorerObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      unlockAchievement('explorer');
+      explorerObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+explorerObs.observe(footer);
 </script>
 </body>
 </html>
