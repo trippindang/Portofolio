@@ -816,85 +816,7 @@
     color: var(--muted2);
   }
 
-  /* ===== TESTIMONIALS ===== */
-  #testimonials { background: var(--bg2); }
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-  .testi-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 2rem;
-    position: relative;
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow: hidden;
-  }
-  .testi-card::before {
-    content: '"';
-    position: absolute;
-    top: -0.5rem;
-    left: 1.5rem;
-    font-size: 5rem;
-    font-family: var(--font-display);
-    font-weight: 800;
-    color: var(--cyan);
-    opacity: 0.08;
-    line-height: 1;
-    pointer-events: none;
-  }
-  .testi-card:hover {
-    border-color: var(--border2);
-    transform: translateY(-5px);
-    box-shadow: var(--glow-purple);
-  }
-  .testi-stars {
-    display: flex;
-    gap: 0.2rem;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-  }
-  .testi-star { color: #fbbf24; }
-  .testi-text {
-    font-size: 0.92rem;
-    color: var(--muted);
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-    font-style: italic;
-  }
-  .testi-author {
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-  }
-  .testi-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--cyan), var(--purple2));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #fff;
-    flex-shrink: 0;
-    font-family: var(--font-mono);
-  }
-  .testi-name {
-    font-size: 0.88rem;
-    font-weight: 700;
-    margin-bottom: 0.1rem;
-  }
-  .testi-role {
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--muted2);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
+
 
   /* CONTACT */
   #contact { background: var(--bg2); }
@@ -1163,7 +1085,6 @@
     <li><a href="#certificates">Certificates</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#cv">CV</a></li>
-    <li><a href="#testimonials">Testimonials</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a class="nav-cta" href="#contact">Hire Me</a>
@@ -1528,62 +1449,7 @@
   </div>
 </section>
 
-<!-- ===== TESTIMONIALS SECTION ===== -->
-<section id="testimonials">
-  <div class="section-tag reveal">Social Proof</div>
-  <h2 class="section-title reveal">What People Say</h2>
-  <p class="section-sub reveal">Words from teammates, classmates, and collaborators who've seen my work up close.</p>
 
-  <div class="testimonials-grid">
-    <div class="testi-card reveal">
-      <div class="testi-stars">
-        <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
-      </div>
-      <p class="testi-text">
-        "Nicholas is the kind of teammate you want on every project. He jumps into new tech without hesitation, always delivers, and somehow makes it look easy. His problem-solving instinct is genuinely impressive."
-      </p>
-      <div class="testi-author">
-        <div class="testi-avatar">AK</div>
-        <div>
-          <div class="testi-name">Add Teammate Name</div>
-          <div class="testi-role">Classmate · UDINUS</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="testi-card reveal reveal-delay-1">
-      <div class="testi-stars">
-        <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
-      </div>
-      <p class="testi-text">
-        "Working with Nicholas on our group project was a great experience. He takes ownership, communicates well, and actually cares about the quality of the work. He's also a quick learner — pick it up fast and does it right."
-      </p>
-      <div class="testi-author">
-        <div class="testi-avatar" style="background: linear-gradient(135deg, var(--pink), var(--purple2));">RD</div>
-        <div>
-          <div class="testi-name">Add Collaborator Name</div>
-          <div class="testi-role">Project Partner · Replace This</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="testi-card reveal reveal-delay-2">
-      <div class="testi-stars">
-        <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
-      </div>
-      <p class="testi-text">
-        "Nicholas has a rare combination of technical skill and creative thinking. Whether it's code or design, he brings both sides together in a way that most people can't. Reliable, sharp, and easy to work with."
-      </p>
-      <div class="testi-author">
-        <div class="testi-avatar" style="background: linear-gradient(135deg, var(--cyan2), var(--cyan));">FH</div>
-        <div>
-          <div class="testi-name">Add Friend/Mentor Name</div>
-          <div class="testi-role">Mentor · Replace This</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- CONTACT -->
 <section id="contact">
@@ -1688,7 +1554,7 @@ function animateRing() {
   requestAnimationFrame(animateRing);
 }
 animateRing();
-document.querySelectorAll('a, button, .cert-card, .skill-card, .project-card, .testi-card').forEach(el => {
+document.querySelectorAll('a, button, .cert-card, .skill-card, .project-card').forEach(el => {
   el.addEventListener('mouseenter', () => cursorRing.classList.add('hovered'));
   el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovered'));
 });
