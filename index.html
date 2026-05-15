@@ -1047,6 +1047,109 @@
   .cv-item-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
   .cv-item-sub { font-size: 0.8rem; color: var(--muted); font-family: var(--font-mono); }
 
+  /* ACHIEVEMENTS SECTION */
+  #achievements { background: var(--bg2); }
+  .ach-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 860px;
+  }
+  .ach-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .ach-panel-title {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .ach-panel-count {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    padding: 0.25rem 0.9rem;
+    border-radius: 100px;
+  }
+  .ach-panel-count span { color: var(--cyan); font-weight: 700; }
+  .ach-grid-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.8rem;
+  }
+  .ach-card {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.9rem 1rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .ach-card.unlocked {
+    border-color: rgba(0,229,255,0.2);
+    background: rgba(0,229,255,0.03);
+  }
+  .ach-card.unlocked::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cyan), var(--purple2));
+  }
+  .ach-card.locked { opacity: 0.5; }
+  .ach-card-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--surface2);
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .ach-card.locked .ach-card-icon {
+    font-size: 1rem;
+    color: var(--muted2);
+    font-family: var(--font-mono);
+    letter-spacing: -0.05em;
+  }
+  .ach-card-info { min-width: 0; flex: 1; }
+  .ach-card-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0.2rem;
+  }
+  .ach-card.locked .ach-card-name {
+    color: var(--muted2);
+    letter-spacing: 0.08em;
+    font-family: var(--font-mono);
+  }
+  .ach-card-desc {
+    font-family: var(--font-mono);
+    font-size: 0.63rem;
+    color: var(--muted2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ach-card.unlocked .ach-card-desc { color: var(--muted); }
+
   /* CONTACT */
   #contact { background: var(--bg2); }
   .contact-wrap {
@@ -1169,6 +1272,7 @@
   }
   .footer-social:hover { border-color: var(--border2); color: var(--cyan); }
 
+  /* Achievement Toast */
   .achievement-toast {
     position: fixed;
     bottom: 6rem;
@@ -1188,40 +1292,11 @@
     pointer-events: none;
   }
   .achievement-toast.show { transform: translateX(0); }
-  .achievement-icon { font-size: 2rem; flex-shrink: 0; filter: drop-shadow(0 0 8px rgba(251,191,36,0.5)); }
+  .achievement-icon { font-size: 2rem; flex-shrink: 0; }
   .achievement-text { flex: 1; }
   .achievement-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.2rem; }
   .achievement-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.1rem; color: var(--text); }
   .achievement-desc { font-size: 0.72rem; color: var(--muted); font-family: var(--font-mono); }
-
-  .achievements-panel {
-    position: fixed;
-    bottom: 2rem;
-    left: 2rem;
-    z-index: 500;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-  .badge-pill {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--surface);
-    border: 1px solid var(--border2);
-    border-radius: 100px;
-    padding: 0.3rem 0.8rem 0.3rem 0.4rem;
-    font-family: var(--font-mono);
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: opacity 0.4s, transform 0.4s;
-    white-space: nowrap;
-  }
-  .badge-pill.earned { opacity: 1; transform: translateX(0); }
-  .badge-pill-icon { font-size: 1rem; }
 
   @media (max-width: 900px) {
     nav { padding: 1rem 1.5rem; }
@@ -1237,6 +1312,7 @@
     .achievement-toast { right: 1rem; max-width: 260px; }
     .memory-grid { grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
     .game-selector { grid-template-columns: repeat(3, 1fr); }
+    .ach-grid-panel { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
   }
 
   body::before {
@@ -1261,8 +1337,6 @@
   <span class="icon icon-sun">☀️</span>
 </button>
 
-<div class="achievements-panel" id="achievementsPanel"></div>
-
 <div class="achievement-toast" id="achievementToast">
   <div class="achievement-icon" id="toastIcon">🏆</div>
   <div class="achievement-text">
@@ -1282,6 +1356,7 @@
     <li><a href="#certificates">Certificates</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#cv">CV</a></li>
+    <li><a href="#achievements">Achievements</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a class="nav-cta" href="#contact">Hire Me</a>
@@ -1498,14 +1573,12 @@
   <div class="section-tag reveal">Work</div>
   <h2 class="section-title reveal">Projects</h2>
 
-  <!-- Arcade intro -->
   <div class="arcade-intro reveal">
     <div class="arcade-intro-badge">🎮 Easter Egg Found</div>
     <h3>Oh wait — the projects are in here!</h3>
     <p>Feeling bored? The real projects are still loading... but in the meantime, pick a game and have some fun. Choose your challenge below!</p>
   </div>
 
-  <!-- Game selector -->
   <div class="game-selector reveal">
     <button class="game-btn active" onclick="selectGame('trex')" id="btn-trex">
       <span class="game-btn-icon">🦕</span>
@@ -1534,7 +1607,7 @@
     </button>
   </div>
 
-  <!-- ===== GAME 1: T-REX RUNNER ===== -->
+  <!-- GAME 1: T-REX RUNNER -->
   <div class="game-window active" id="game-trex">
     <div class="game-titlebar">
       <div class="tb-dot tb-red"></div>
@@ -1556,7 +1629,7 @@
     </div>
   </div>
 
-  <!-- ===== GAME 2: HACKER TYPING ===== -->
+  <!-- GAME 2: HACKER TYPING -->
   <div class="game-window" id="game-hacker">
     <div class="game-titlebar">
       <div class="tb-dot tb-red"></div>
@@ -1589,7 +1662,7 @@
     </div>
   </div>
 
-  <!-- ===== GAME 3: SNAKE TERMINAL ===== -->
+  <!-- GAME 3: SNAKE TERMINAL -->
   <div class="game-window" id="game-snake">
     <div class="game-titlebar">
       <div class="tb-dot tb-red"></div>
@@ -1614,7 +1687,7 @@
     </div>
   </div>
 
-  <!-- ===== GAME 4: MEMORY MATCH ===== -->
+  <!-- GAME 4: MEMORY MATCH -->
   <div class="game-window" id="game-memory">
     <div class="game-titlebar">
       <div class="tb-dot tb-red"></div>
@@ -1635,7 +1708,7 @@
     </div>
   </div>
 
-  <!-- ===== GAME 5: CATCH THE BUG ===== -->
+  <!-- GAME 5: CATCH THE BUG -->
   <div class="game-window" id="game-bug">
     <div class="game-titlebar">
       <div class="tb-dot tb-red"></div>
@@ -1700,6 +1773,20 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-tag reveal">Unlocked</div>
+  <h2 class="section-title reveal">Your Achievements</h2>
+  <p class="section-sub reveal">Explore the site to unlock them all. Some are secret — keep digging.</p>
+  <div class="ach-panel reveal">
+    <div class="ach-panel-header">
+      <span class="ach-panel-title">🏆 Collection</span>
+      <span class="ach-panel-count"><span id="ach-unlocked-count">0</span> / 10 unlocked</span>
+    </div>
+    <div class="ach-grid-panel" id="ach-grid-panel"></div>
   </div>
 </section>
 
@@ -1906,20 +1993,20 @@ document.querySelectorAll('.skill-card').forEach(card => {
 
 // ===== ACHIEVEMENT SYSTEM =====
 const ACHIEVEMENTS = {
-  explorer: { icon: '🗺️', title: 'The Explorer', desc: 'Scrolled to the very bottom', badge: '🗺️ The Explorer' },
-  daywalker: { icon: '☀️', title: 'Day Walker', desc: 'Switched to light mode', badge: '☀️ Day Walker' },
-  messenger: { icon: '✉️', title: 'First Contact', desc: 'Sent a message', badge: '✉️ First Contact' },
-  skillseeker: { icon: '🔍', title: 'Skill Seeker', desc: 'Checked out the tech stack', badge: '🔍 Skill Seeker' },
-  certified: { icon: '🏅', title: 'Certified Fan', desc: 'Viewed the certificates', badge: '🏅 Certified Fan' },
-  gamer: { icon: '🎮', title: 'Found the Arcade!', desc: 'Discovered the mini-games', badge: '🎮 Gamer' },
-  trexmaster: { icon: '🦕', title: 'Dino King', desc: 'Scored 500+ in T-Rex Runner', badge: '🦕 Dino King' },
-  hacker: { icon: '💻', title: 'L33t Hacker', desc: 'Completed Hacker Typing', badge: '💻 L33t Hacker' },
-  bugfixer: { icon: '🔧', title: 'Bug Exterminator', desc: 'Caught 20+ bugs', badge: '🔧 Bug Exterminator' },
-  memory: { icon: '🧠', title: 'Photographic Memory', desc: 'Completed Memory Match', badge: '🧠 Memory' }
+  explorer:    { icon: '🗺️', title: 'The Explorer',         desc: 'Scrolled to the very bottom' },
+  daywalker:   { icon: '☀️', title: 'Day Walker',           desc: 'Switched to light mode' },
+  messenger:   { icon: '✉️', title: 'First Contact',        desc: 'Sent a message' },
+  skillseeker: { icon: '🔍', title: 'Skill Seeker',         desc: 'Checked out the tech stack' },
+  certified:   { icon: '🏅', title: 'Certified Fan',        desc: 'Viewed the certificates' },
+  gamer:       { icon: '🎮', title: 'Found the Arcade!',    desc: 'Discovered the mini-games' },
+  trexmaster:  { icon: '🦕', title: 'Dino King',            desc: 'Scored 500+ in T-Rex Runner' },
+  hacker:      { icon: '💻', title: 'L33t Hacker',          desc: 'Completed Hacker Typing' },
+  bugfixer:    { icon: '🔧', title: 'Bug Exterminator',     desc: 'Caught 20+ bugs' },
+  memory:      { icon: '🧠', title: 'Photographic Memory',  desc: 'Completed Memory Match' }
 };
 
 const earnedSet = new Set(JSON.parse(localStorage.getItem('na-achievements') || '[]'));
-const panel = document.getElementById('achievementsPanel');
+
 const toast = document.getElementById('achievementToast');
 const toastIcon = document.getElementById('toastIcon');
 const toastTitle = document.getElementById('toastTitle');
@@ -1927,16 +2014,38 @@ const toastDesc = document.getElementById('toastDesc');
 let toastTimeout = null;
 
 function renderPanel() {
-  panel.innerHTML = '';
-  earnedSet.forEach(id => {
-    const a = ACHIEVEMENTS[id]; if (!a) return;
-    const pill = document.createElement('div');
-    pill.className = 'badge-pill';
-    pill.innerHTML = `<span class="badge-pill-icon">${a.icon}</span>${a.title}`;
-    panel.appendChild(pill);
-    requestAnimationFrame(() => requestAnimationFrame(() => pill.classList.add('earned')));
+  const grid = document.getElementById('ach-grid-panel');
+  const countEl = document.getElementById('ach-unlocked-count');
+  if (!grid) return;
+  grid.innerHTML = '';
+  Object.entries(ACHIEVEMENTS).forEach(([id, a]) => {
+    const unlocked = earnedSet.has(id);
+    const card = document.createElement('div');
+    card.className = 'ach-card ' + (unlocked ? 'unlocked' : 'locked');
+
+    if (unlocked) {
+      card.innerHTML = `
+        <div class="ach-card-icon">${a.icon}</div>
+        <div class="ach-card-info">
+          <div class="ach-card-name">${a.title}</div>
+          <div class="ach-card-desc">${a.desc}</div>
+        </div>
+      `;
+    } else {
+      card.innerHTML = `
+        <div class="ach-card-icon">???</div>
+        <div class="ach-card-info">
+          <div class="ach-card-name">???</div>
+          <div class="ach-card-desc">Keep exploring to unlock</div>
+        </div>
+      `;
+    }
+
+    grid.appendChild(card);
   });
+  if (countEl) countEl.textContent = earnedSet.size;
 }
+
 renderPanel();
 
 function unlockAchievement(id) {
@@ -2024,17 +2133,13 @@ function selectGame(name) {
   function drawPlayer() {
     const p = player;
     ctx.fillStyle = getCyan();
-    // Body
     ctx.fillRect(p.x, p.y, p.w, p.h);
-    // Eye
     ctx.fillStyle = '#000';
     ctx.fillRect(p.x + p.w - 10, p.y + 6, 7, 7);
-    // Legs (animated)
     ctx.fillStyle = getCyan();
     const legOff = (p.frame % 2 === 0) ? 4 : -4;
     ctx.fillRect(p.x + 4, p.y + p.h, 10, 10 + legOff);
     ctx.fillRect(p.x + p.w - 14, p.y + p.h, 10, 10 - legOff);
-    // Label
     ctx.fillStyle = '#000';
     ctx.font = 'bold 8px monospace';
     ctx.fillText('.exe', p.x + 2, p.y + p.h / 2 + 4);
@@ -2043,7 +2148,6 @@ function selectGame(name) {
   function drawObstacle(ob) {
     ctx.fillStyle = getPurple();
     ctx.fillRect(ob.x, ob.y, ob.w, ob.h);
-    // Cactus-like top
     ctx.fillRect(ob.x - 5, ob.y + 8, ob.w + 10, 8);
   }
 
@@ -2073,30 +2177,20 @@ function selectGame(name) {
 
   function gameLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Clouds
     clouds.forEach(c => {
       c.x -= gameSpeed * 0.3;
       if (c.x + c.w < 0) c.x = canvas.width + 100;
       drawCloud(c);
     });
-
     drawGround();
-
-    // Player physics
     if (player.jumping) {
       player.vy += 0.6;
       player.y += player.vy;
       if (player.y >= GROUND) { player.y = GROUND; player.vy = 0; player.jumping = false; }
     }
-
-    // Leg animation
     player.frameTimer++;
     if (player.frameTimer > 8) { player.frame++; player.frameTimer = 0; }
-
     drawPlayer();
-
-    // Obstacles
     spawnTimer++;
     if (spawnTimer >= spawnInterval) {
       spawnObstacle();
@@ -2105,16 +2199,12 @@ function selectGame(name) {
     }
     obstacles.forEach(ob => { ob.x -= gameSpeed; drawObstacle(ob); });
     obstacles = obstacles.filter(ob => ob.x + ob.w > 0);
-
-    // Score
     frameCount++;
     if (frameCount % 6 === 0) score++;
     scoreEl.textContent = score;
     gameSpeed = 4 + Math.floor(score / 100) * 0.5;
     speedEl.textContent = (1 + Math.floor(score / 100) * 0.125).toFixed(2) + 'x';
-
     if (score >= 500) unlockAchievement('trexmaster');
-
     if (checkCollision()) {
       if (score > hiScore) { hiScore = score; localStorage.setItem('trex-hi', hiScore); }
       hiEl.textContent = hiScore;
@@ -2122,7 +2212,6 @@ function selectGame(name) {
       msgEl.innerHTML = `<span>Game Over! Score: ${score}</span> — Press SPACE or TAP to restart`;
       return;
     }
-
     frameId = requestAnimationFrame(gameLoop);
   }
 
@@ -2154,7 +2243,6 @@ function selectGame(name) {
   canvas.addEventListener('click', jump);
   canvas.addEventListener('touchstart', e => { e.preventDefault(); jump(); }, { passive: false });
 
-  // Draw idle state
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawGround();
   drawPlayer();
@@ -2265,7 +2353,6 @@ function selectGame(name) {
     accEl.textContent = acc + '%';
     wpmEl.textContent = calcWPM();
     renderTarget();
-
     if (val === word) {
       wpmHistory.push(calcWPM());
       inputEl.value = '';
@@ -2300,7 +2387,6 @@ function selectGame(name) {
   hiEl.textContent = hiScore;
 
   function getCyan() { return getComputedStyle(document.documentElement).getPropertyValue('--cyan').trim() || '#00e5ff'; }
-  function getPurple() { return getComputedStyle(document.documentElement).getPropertyValue('--purple2').trim() || '#a78bfa'; }
   function getPink() { return getComputedStyle(document.documentElement).getPropertyValue('--pink').trim() || '#f472b6'; }
 
   function placeFood() {
@@ -2325,26 +2411,19 @@ function selectGame(name) {
   function draw() {
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Grid
     ctx.strokeStyle = 'rgba(255,255,255,0.03)';
     ctx.lineWidth = 0.5;
     for (let x = 0; x <= COLS; x++) { ctx.beginPath(); ctx.moveTo(x * CELL, 0); ctx.lineTo(x * CELL, canvas.height); ctx.stroke(); }
     for (let y = 0; y <= ROWS; y++) { ctx.beginPath(); ctx.moveTo(0, y * CELL); ctx.lineTo(canvas.width, y * CELL); ctx.stroke(); }
-
-    // Border
     ctx.strokeStyle = getCyan();
     ctx.lineWidth = 1.5;
     ctx.globalAlpha = 0.3;
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
     ctx.globalAlpha = 1;
-
-    // Snake
     snake.forEach((seg, i) => {
       const ratio = i / snake.length;
       if (i === 0) ctx.fillStyle = getCyan();
       else {
-        // Gradient from cyan to purple
         const r = Math.round(ratio * 124);
         const g = Math.round((1 - ratio) * 229);
         const b = Math.round(ratio * 200 + (1 - ratio) * 255);
@@ -2352,14 +2431,11 @@ function selectGame(name) {
       }
       ctx.fillRect(seg.x * CELL + 1, seg.y * CELL + 1, CELL - 2, CELL - 2);
       if (i === 0) {
-        // Eyes
         ctx.fillStyle = '#000';
         ctx.fillRect(seg.x * CELL + 5, seg.y * CELL + 4, 3, 3);
         ctx.fillRect(seg.x * CELL + 12, seg.y * CELL + 4, 3, 3);
       }
     });
-
-    // Food (pulsing)
     const pulse = 0.7 + 0.3 * Math.sin(Date.now() / 200);
     ctx.fillStyle = getPink();
     ctx.globalAlpha = pulse;
@@ -2377,14 +2453,12 @@ function selectGame(name) {
   function step() {
     dir = nextDir;
     const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
-
     if (head.x < 0 || head.x >= COLS || head.y < 0 || head.y >= ROWS || snake.some(s => s.x === head.x && s.y === head.y)) {
       running = false;
       if (score > hiScore) { hiScore = score; localStorage.setItem('snake-hi', hiScore); hiEl.textContent = hiScore; }
       msgEl.innerHTML = `<span>Game Over! Score: ${score}</span> — Press ↺ to restart`;
       return;
     }
-
     snake.unshift(head);
     if (head.x === food.x && head.y === food.y) {
       score += 10; placeFood();
@@ -2462,7 +2536,6 @@ function selectGame(name) {
     cards[idx].flipped = true;
     el.classList.add('flipped');
     flipped.push({ idx, el });
-
     if (flipped.length === 2) {
       moves++;
       movesEl.textContent = moves;
@@ -2564,7 +2637,6 @@ function selectGame(name) {
       e.stopPropagation();
       clearTimeout(escapeTimer);
       cancelAnimationFrame(moveFrame);
-      const rect = arena.getBoundingClientRect();
       const splat = document.createElement('div');
       splat.className = 'bug-splat';
       splat.textContent = '💥';
@@ -2589,7 +2661,6 @@ function selectGame(name) {
     scoreEl.textContent = '0'; countEl.textContent = '0'; escapedEl.textContent = '0';
     startBtn.textContent = '⏳ Running...';
     startBtn.disabled = true;
-
     spawnInterval = setInterval(spawnBug, 800);
     timerInterval = setInterval(() => {
       timeLeft -= 0.1;
