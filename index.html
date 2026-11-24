@@ -1781,7 +1781,8 @@
   <div class="section-tag reveal">Credentials</div>
   <h2 class="section-title reveal">Certificates</h2>
   <p class="section-sub reveal">Proof of skills, one certification at a time.</p>
-  <div class="cert-grid" style="grid-template-columns: 1fr; max-width: 480px;">
+  <div class="cert-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); max-width: 800px;">
+    <!-- Sertifikat 1 (IoT) -->
     <div class="cert-card reveal" onclick="window.open('IOT.jpeg')">
       <div style="width:100%;height:200px;overflow:hidden;border-radius:4px;margin-bottom:1.2rem;border:1px solid var(--border);">
         <img src="IOT.jpeg" alt="IOT Certificate" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
@@ -1789,6 +1790,16 @@
       <div class="cert-issuer">HIMAFORKA</div>
       <div class="cert-title">IOT: Challenge, Careers, and Modern Impact</div>
       <div class="cert-year">Participant · December 2024</div>
+    </div>
+
+    <!-- Sertifikat 2 (Samsung Innovation Campus) -->
+    <div class="cert-card reveal" onclick="window.open('SIC.png')">
+      <div style="width:100%;height:200px;overflow:hidden;border-radius:4px;margin-bottom:1.2rem;border:1px solid var(--border);">
+        <img src="SIC.png" alt="Samsung Innovation Campus Certificate" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+      </div>
+      <div class="cert-issuer">SAMSUNG</div>
+      <div class="cert-title">Samsung Innovation Campus — IoT Mentorship</div>
+      <div class="cert-year">Participant · 2026</div>
     </div>
   </div>
 </section>
